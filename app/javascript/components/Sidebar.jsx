@@ -1,15 +1,22 @@
 import React from 'react';
-import { FaDesktop } from 'react-icons/fa';
+import {
+  FaBell,
+  FaDesktop,
+  FaListAlt,
+  FaNewspaper,
+  FaRegShareSquare,
+  FaRegSun
+} from 'react-icons/fa';
 import Home from '../pages/Home';
 
 const Sidebar = () => {
   const Sidebars = [
     { title: 'Dashboard', icon: <FaDesktop />, href: '#' },
-    { title: 'Notifications', icon: <FaDesktop />, href: '#' },
-    { title: 'messages', icon: <FaDesktop />, href: '#' },
-    { title: 'settings', icon: <FaDesktop />, href: '#' },
-    { title: 'wishlists', icon: <FaDesktop />, href: '#' },
-    { title: 'Logout', icon: <FaDesktop />, href: '#' }
+    { title: 'Notifications', icon: <FaBell />, href: '#' },
+    { title: 'messages', icon: <FaNewspaper />, href: '#' },
+    { title: 'settings', icon: <FaRegSun />, href: '#' },
+    { title: 'wishlists', icon: <FaListAlt />, href: '#' },
+    { title: 'Logout', icon: <FaRegShareSquare />, href: '#' }
   ];
 
   return (
