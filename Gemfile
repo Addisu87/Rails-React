@@ -75,3 +75,22 @@ group :test do
 end
 
 gem "tailwindcss-rails", "~> 2.0"
+
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-cors'
+
+# Authentication
+gem 'devise'
+gem 'devise-jwt'
+
+# Serialization
+gem 'jsonapi-serializer'
+
+# For Error fixing
+gem 'rubocop-rails', '~> 2.17', '>= 2.17.4'
+
+# For sending emails, I’ve included the ‘letter_opener’ gem
+gem 'letter_opener'
+
+# Used ‘sidekiq’ as a background job to send emails
+gem 'sidekiq', '< 8'
