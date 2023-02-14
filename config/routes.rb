@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get '/user', to: 'user#index'
+  get '/current_user', to: 'current_user#index'
 
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
