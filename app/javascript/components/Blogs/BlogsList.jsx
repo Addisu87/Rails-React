@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectAllBlogs } from '../redux/blogSlice';
+import { selectAllBlogs } from '../../redux/blogSlice';
 
 const BlogsList = () => {
   const blogs = useSelector(selectAllBlogs);

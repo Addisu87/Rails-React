@@ -5,7 +5,11 @@ import axios from 'axios';
 const url = 'http://localhost:3000';
 
 //  Initial States
-const initialState = [];
+const initialState = {
+  blogs: [],
+  status: 'idle',
+  error: null
+};
 
 // Async Action Creators
 
@@ -14,14 +18,30 @@ const blogSlice = createSlice({
   name: 'blogs',
   initialState,
   reducers: {
-    blogAdded: (state) => {
-      state.value += 1;
+    blogAdded: {
+      reducer(state, action) {
+        state.blogs.push(action.payload);
+      },
+      prepare(title, content, userId) {
+        // omit prepare logic
+      }
     },
-    blogUpdated: (state, action) => {
-      state.value += action.payload;
+
+    reactionAdded(state, action) {
+      const { blogId, reaction } = action.payload;
+      const existingBlog = state.blogs.find((blog) => blog.id === blogId);
+      if (existingBlog) {
+        existingBlog.reactions[reaction]++;
+      }
     },
-    reactionAdded: (state) => {
-      state.value -= 1;
+
+    blogUpdated(state, action) {
+      const { id, title, content } = action.payload;
+      const existingBlog = state.blogs.find((blog) => blog.id === id);
+      if (existingBlog) {
+        existingBlog.title = title;
+        existingBlog.content = content;
+      }
     }
   }
 });
