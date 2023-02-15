@@ -1,4 +1,5 @@
 import React from 'react';
+import { TimeAgo } from './TimeAgo';
 
 const BlogExcerpt = ({ blog }) => {
   return (

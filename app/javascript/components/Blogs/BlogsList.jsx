@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
+import { RotatingLines } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBlogs, selectAllBlogs } from '../../redux/blogSlice';
+import BlogExcerpt from './BlogExcerpt';
 
 const BlogsList = () => {
   const dispatch = useDispatch();
@@ -17,7 +19,7 @@ const BlogsList = () => {
 
   let content;
 
-  if (postStatus === 'loading') {
+  if (blogStatus === 'loading') {
     content = (
       <RotatingLines
         text="Loading..."
@@ -28,9 +30,23 @@ const BlogsList = () => {
         visible={true}
       />
     );
+  } else if (blogStatus === 'succeeded') {
+    const orderedBlogs = blogs
+      .slice()
+      .sort((a, b) => b.date.localeCompare(a.date));
+    content = orderedBlogs.map((blog) => (
+      <BlogExcerpt key={blog.id} blog={blog} />
+    ));
+  } else if (blogStatus === 'failed') {
+    content = <div>{error}</div>;
   }
 
-  return <div>BlogsList</div>;
+  return (
+    <div className="blogs-list">
+      <h2>BlogsList</h2>
+      {content}
+    </div>
+  );
 };
 
 export default BlogsList;
