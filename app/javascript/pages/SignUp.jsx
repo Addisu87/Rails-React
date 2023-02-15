@@ -1,4 +1,5 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
@@ -11,7 +12,7 @@ const SignUp = () => {
       <div className="mt-20 mb-12 md:col-span-2 md:mt-24 space-y-8">
         <div className="px-4 sm:px-0">
           <h3 className="text-xl text-center font-medium leading-6 text-gray-900">
-            Get In Touch
+            Sign Up
           </h3>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -21,11 +22,14 @@ const SignUp = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <input
                     type="text"
-                    name="full-name"
-                    {...register('FullName', { required: true })}
-                    placeholder="Full Name"
-                    id="full-name"
-                    autoComplete="full-name"
+                    name="first-name"
+                    {...register('FirstName', {
+                      required: true,
+                      maxLength: 20
+                    })}
+                    placeholder="First Name"
+                    id="first-name"
+                    autoComplete="first-name"
                     className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   />
                 </div>
@@ -33,11 +37,11 @@ const SignUp = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <input
                     type="text"
-                    name="phone"
-                    {...register('phone')}
-                    placeholder="Phone Number"
-                    id="phone"
-                    autoComplete="phone"
+                    name="lastName"
+                    {...register('lastName', { pattern: /^[A-Za-z]+$/i })}
+                    placeholder="lastName"
+                    id="lastName"
+                    autoComplete="lastName"
                     className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   />
                 </div>
@@ -57,28 +61,13 @@ const SignUp = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <input
                     type="text"
-                    name="city"
-                    {...register('city')}
-                    placeholder="City"
-                    id="city"
-                    autoComplete="city"
+                    name="password"
+                    {...register('password')}
+                    placeholder="password"
+                    id="password"
+                    autoComplete="password"
                     className="mt-1 block w-full  border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   />
-                </div>
-
-                <div className="col-span-6 sm:col-span-3">
-                  <select
-                    id="products"
-                    name="products"
-                    {...register('products')}
-                    placeholder="Products"
-                    autoComplete="product-name"
-                    className="mt-1 block w-full border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  >
-                    <option>Cloths</option>
-                    <option>Suits</option>
-                    <option>Accessories</option>
-                  </select>
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
@@ -91,22 +80,6 @@ const SignUp = () => {
                     autoComplete="text"
                     className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   />
-                </div>
-
-                <div className="col-span-6 sm:col-span-3">
-                  <select
-                    id="print"
-                    name="print"
-                    {...register('print')}
-                    placeholder="Print"
-                    autoComplete="print-type"
-                    className="mt-1 block w-full border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  >
-                    <option>Block</option>
-                    <option>Roller</option>
-                    <option>Screen </option>
-                    <option>Heat Transfer</option>
-                  </select>
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
