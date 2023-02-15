@@ -15,10 +15,10 @@ const App = () => {
         <Router>
           <Routes>
             <Route path="/" exact element={<Home />} />
-            <Route exact path="/blogs" element={<SingleBlogPage />} />
-            <Route exact path="/editBlog" element={<EditBlogForm />} />
-            <Route path="/sign_in" exact element={<SignIn />} />
-            <Route path="/sign_up" exact element={<SignUp />} />
+            <Route path="/blogs/:blogId" element={<SingleBlogPage />} />
+            <Route path="/editBlog/:blogId" element={<EditBlogForm />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
           </Routes>
         </Router>
       </main>

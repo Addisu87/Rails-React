@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    window.location.href = `mailto:madhurexports11@gmail.com?body=${data.name}. &body=${data.message}`;
+    window.location.href = `mailto:addisuhaile87@gmail.com?body=${data.name}. &body=${data.message}`;
   };
 
   return (
@@ -16,10 +16,10 @@ const SignUp = () => {
           </h3>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="overflow-hidden shadow sm:rounded-md">
+          <div className="overflow-hidden drop-shadow-md sm:rounded-md">
             <div className="bg-white px-4 py-5 sm:p-6">
               <div className="grid grid-cols-6 gap-6">
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-6">
                   <input
                     type="text"
                     name="first-name"
@@ -34,7 +34,7 @@ const SignUp = () => {
                   />
                 </div>
 
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-6">
                   <input
                     type="text"
                     name="lastName"
@@ -46,7 +46,7 @@ const SignUp = () => {
                   />
                 </div>
 
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-6">
                   <input
                     type="text"
                     name="email-address"
@@ -58,7 +58,7 @@ const SignUp = () => {
                   />
                 </div>
 
-                <div className="col-span-6 sm:col-span-3">
+                <div className="col-span-6">
                   <input
                     type="text"
                     name="password"
@@ -67,51 +67,6 @@ const SignUp = () => {
                     id="password"
                     autoComplete="password"
                     className="mt-1 block w-full  border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
-
-                <div className="col-span-6 sm:col-span-3">
-                  <input
-                    type="text"
-                    name="quality"
-                    {...register('quality')}
-                    placeholder="Quality"
-                    id="quality"
-                    autoComplete="text"
-                    className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
-
-                <div className="col-span-6 sm:col-span-3">
-                  <input
-                    id="file-upload"
-                    name="file-upload"
-                    {...register('FileUpload')}
-                    type="file"
-                    autoComplete="text"
-                    className="mt-1 block w-full border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
-
-                <div className="col-span-6">
-                  <input
-                    id="date"
-                    name="date"
-                    {...register('date', { required: true })}
-                    type="date"
-                    autoComplete="date"
-                    className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
-
-                <div className="col-span-6">
-                  <textarea
-                    id="message"
-                    name="message"
-                    {...register('message', { required: true })}
-                    placeholder="Message"
-                    rows={4}
-                    className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   />
                 </div>
               </div>

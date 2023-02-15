@@ -86,9 +86,6 @@ gem 'devise-jwt'
 # Serialization
 gem 'jsonapi-serializer'
 
-# For Error fixing
-gem 'rubocop-rails', '~> 2.17', '>= 2.17.4'
-
 # For sending emails, I’ve included the ‘letter_opener’ gem
 gem 'letter_opener'
 
