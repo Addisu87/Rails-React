@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // Base URL
-const url = 'http://localhost:3000';
+const url = 'http://localhost:3000/blogs';
 
 //  Initial States
 const initialState = {
@@ -11,7 +11,11 @@ const initialState = {
   error: null
 };
 
-// Async Action Creators
+//createAsyncThunk API generates thunks that automatically dispatch those "start/success/failure" actions.
+export const fetchBlogs = createAsyncThunk('blogs/fetchBlogs', async () => {
+  const response = await axios.get(url);
+  return response.data;
+});
 
 // Slice Reducer
 const blogSlice = createSlice({
@@ -51,7 +55,7 @@ export const { blogAdded, blogUpdated, reactionAdded } = blogSlice.actions;
 
 export default blogSlice.reducer;
 
-export const selectAllBlogs = (state) => state.blogs;
+export const selectAllBlogs = (state) => state.blogs.blogs;
 
 export const selectBlogById = (state, blogId) =>
-  state.blogs.find((blog) => blog.id === blogId);
+  state.blogs.blogs.find((blog) => blog.id === blogId);
