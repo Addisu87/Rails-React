@@ -17,11 +17,6 @@ export const fetchBlogs = createAsyncThunk('blogs/fetchBlogs', async () => {
   return response.data;
 });
 
-export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-  const response = await client.get(`${url}/users`);
-  return response.data;
-});
-
 export const addNewBlog = createAsyncThunk(
   'blogs/addNewBlog',
   async (initialBlog) => {
@@ -78,9 +73,6 @@ const blogSlice = createSlice({
       .addCase(fetchBlogs.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
-      })
-      .addCase(fetchUsers.fulfilled, (state, action) => {
-        return action.payload;
       })
       .addCase(addNewBlog.fulfilled, (state, action) => {
         // We can directly add the new blog object to our posts array
