@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // Base URL
-const url = 'http://localhost:3000/blogs';
+const url = 'http://localhost:3000';
 
 //  Initial States
 const initialState = {
@@ -13,7 +13,7 @@ const initialState = {
 
 //createAsyncThunk API generates thunks that automatically dispatch those "start/success/failure" actions.
 export const fetchBlogs = createAsyncThunk('blogs/fetchBlogs', async () => {
-  const response = await axios.get(url);
+  const response = await axios.get(`${url}/blogs`);
   return response.data;
 });
 
@@ -47,6 +47,23 @@ const blogSlice = createSlice({
         existingBlog.content = content;
       }
     }
+  },
+
+  // extraReducers to listen fetch blogs additional actions
+  extraReducers(builder) {
+    builder
+      .addCase(fetchBlogs.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchBlogs.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        // Add any fetched blogs to the array
+        state.blogs = state.blogs.concat(action.payload);
+      })
+      .addCase(fetchBlogs.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
   }
 });
 

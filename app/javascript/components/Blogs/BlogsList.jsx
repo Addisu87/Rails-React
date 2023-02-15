@@ -10,7 +10,7 @@ const BlogsList = () => {
 
   useEffect(() => {
     if (blogStatus === 'idle') {
-      dispatch(fetchBlogs);
+      dispatch(fetchBlogs());
     }
   }, [blogStatus, dispatch]);
 
