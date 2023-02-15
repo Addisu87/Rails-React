@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import BlogAuthor from './BlogAuthor';
 import ReactionButtons from './ReactionButtons';
 import { TimeAgo } from './TimeAgo';
 

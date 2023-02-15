@@ -10,7 +10,7 @@ const reactionEmoji = {
   eyes: '👀'
 };
 
-const ReactionButtons = ({ blogs }) => {
+const ReactionButtons = ({ blog }) => {
   const dispatch = useDispatch();
 
   const reactionButtons = Object.entries(reactionEmoji).map(([name, emoji]) => {
@@ -20,10 +20,10 @@ const ReactionButtons = ({ blogs }) => {
         type="button"
         className="muted-button reaction-button"
         onClick={() =>
-          dispatch(reactionAdded({ postId: post.id, reaction: name }))
+          dispatch(reactionAdded({ blogId: blog.id, reaction: name }))
         }
       >
-        {emoji} {post.reactions[name]}
+        {emoji} {blog.reactions[name]}
       </button>
     );
   });

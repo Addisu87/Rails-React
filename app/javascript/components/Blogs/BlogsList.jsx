@@ -31,6 +31,7 @@ const BlogsList = () => {
       />
     );
   } else if (blogStatus === 'succeeded') {
+    // Sort blogs in reverse chronological order by datetime string
     const orderedBlogs = blogs
       .slice()
       .sort((a, b) => b.date.localeCompare(a.date));
@@ -42,10 +43,10 @@ const BlogsList = () => {
   }
 
   return (
-    <div className="blogs-list">
-      <h2>BlogsList</h2>
+    <section className="blogs-list">
+      <h2>Blogs</h2>
       {content}
-    </div>
+    </section>
   );
 };
 
