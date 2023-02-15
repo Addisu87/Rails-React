@@ -1,9 +1,11 @@
-const initialState = {
-  value: 0
-};
+// Base URL
+const url = 'http://localhost:3000';
+
+//  Initial States
+const initialState = [];
 
 const blogSlice = createSlice({
-  name: 'blog',
+  name: 'blogs',
   initialState,
   reducers: {
     increment: (state) => {
