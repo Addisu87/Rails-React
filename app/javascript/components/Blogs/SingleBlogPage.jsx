@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { selectBlogById } from '../../redux/blogSlice';
+import ReactionButtons from './ReactionButtons';
 import { TimeAgo } from './TimeAgo';
 
 const SingleBlogPage = ({ match }) => {

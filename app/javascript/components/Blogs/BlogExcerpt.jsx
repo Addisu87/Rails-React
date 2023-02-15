@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactionButtons from './ReactionButtons';
 import { TimeAgo } from './TimeAgo';
 
 const BlogExcerpt = ({ blog }) => {

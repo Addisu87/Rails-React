@@ -27,7 +27,7 @@ const userSlice = createSlice({
     }
   },
 
-  // extraReducers to listen fetch blogs additional actions
+  // extraReducers to listen fetch users additional actions
   extraReducers(builder) {
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
       return action.payload;
@@ -35,6 +35,6 @@ const userSlice = createSlice({
   }
 });
 
-export const { userAdded } = blogSlice.actions;
+export const { userAdded } = userSlice.actions;
 
 export default userSlice.reducer;
