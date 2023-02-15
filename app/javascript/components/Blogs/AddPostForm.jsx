@@ -7,7 +7,12 @@ const AddBlogForm = () => {
   const [userId, setUserId] = useState('');
   const [addRequestStatus, setAddRequestStatus] = useState('idle');
 
-  // omit useSelectors and change handlers
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users);
+
+  const onTitleChanged = (e) => setTitle(e.target.value);
+  const onContentChanged = (e) => setContent(e.target.value);
+  const onAuthorChanged = (e) => setUserId(e.target.value);
 
   const canSave =
     [title, content, userId].every(Boolean) && addRequestStatus === 'idle';
@@ -28,7 +33,43 @@ const AddBlogForm = () => {
     }
   };
 
-  return <div>AddBlogForm</div>;
+  const usersOptions = users.map((user) => (
+    <option key={user.id} value={user.id}>
+      {user.name}
+    </option>
+  ));
+
+  return (
+    <section>
+      <h2>Add a New Blog</h2>
+      <form>
+        <label htmlFor="blogTitle">Blog Title:</label>
+        <input
+          type="text"
+          id="blogTitle"
+          name="blogTitle"
+          placeholder="What's on your mind?"
+          value={title}
+          onChange={onTitleChanged}
+        />
+        <label htmlFor="blogAuthor">Author:</label>
+        <select id="blogAuthor" value={userId} onChange={onAuthorChanged}>
+          <option value=""></option>
+          {usersOptions}
+        </select>
+        <label htmlFor="blogContent">Content:</label>
+        <textarea
+          id="blogContent"
+          name="blogContent"
+          value={content}
+          onChange={onContentChanged}
+        />
+        <button type="button" onClick={onSaveBlogClicked} disabled={!canSave}>
+          Save blog
+        </button>
+      </form>
+    </section>
+  );
 };
 
 export default AddBlogForm;
