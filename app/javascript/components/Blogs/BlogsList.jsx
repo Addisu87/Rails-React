@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBlogs, selectAllBlogs } from '../../redux/blogSlice';
+import { fetchBlogs, selectAllBlogs } from '../../redux/blogsSlice';
 import BlogExcerpt from './BlogExcerpt';
 
 const BlogsList = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { selectBlogById } from '../../redux/blogSlice';
+import { selectBlogById } from '../../redux/blogsSlice';
 import BlogAuthor from './BlogAuthor';
 import ReactionButtons from './ReactionButtons';
 import { TimeAgo } from './TimeAgo';

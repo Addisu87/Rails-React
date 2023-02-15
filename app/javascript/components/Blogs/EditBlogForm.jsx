@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { selectBlogById } from '../../redux/blogSlice';
+import { selectBlogById } from '../../redux/blogsSlice';
 
 const EditBlogForm = ({ match }) => {
   const { blogId } = match.params;

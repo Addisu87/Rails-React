@@ -28,7 +28,7 @@ export const addNewBlog = createAsyncThunk(
 );
 
 // Slice Reducer
-const blogSlice = createSlice({
+const blogsSlice = createSlice({
   name: 'blogs',
   initialState,
   reducers: {
@@ -84,7 +84,7 @@ const blogSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { blogAdded, blogUpdated, reactionAdded } = blogSlice.actions;
 
-export default blogSlice.reducer;
+export default blogsSlice.reducer;
 
 export const selectAllBlogs = (state) => state.blogs.blogs;
 
