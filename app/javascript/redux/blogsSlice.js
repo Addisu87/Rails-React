@@ -82,7 +82,7 @@ const blogsSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { blogAdded, blogUpdated, reactionAdded } = blogSlice.actions;
+export const { blogAdded, blogUpdated, reactionAdded } = blogsSlice.actions;
 
 export default blogsSlice.reducer;
 
