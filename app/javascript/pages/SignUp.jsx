@@ -3,8 +3,9 @@ import { useForm } from 'react-hook-form';
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    window.location.href = `mailto:addisuhaile87@gmail.com?body=${data.name}. &body=${data.message}`;
+  const onSubmit = (values) => {
+    console.log(JSON.stringify(values, null, 2));
+    return false;
   };
 
   return (
@@ -16,7 +17,7 @@ const SignUp = () => {
           </h3>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="overflow-hidden drop-shadow-md sm:rounded-md">
+          <div className="overflow-hidden drop-shadow-2xl sm:rounded-md">
             <div className="bg-white px-4 py-5 sm:p-6">
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">
@@ -50,7 +51,10 @@ const SignUp = () => {
                   <input
                     type="text"
                     name="email-address"
-                    {...register('EmailAddress', { required: true })}
+                    {...register('email', {
+                      required: true,
+                      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+                    })}
                     placeholder="Email Address"
                     id="email-address"
                     autoComplete="email"
@@ -60,7 +64,7 @@ const SignUp = () => {
 
                 <div className="col-span-6">
                   <input
-                    type="text"
+                    type="password"
                     name="password"
                     {...register('password')}
                     placeholder="password"
@@ -76,7 +80,7 @@ const SignUp = () => {
                 type="submit"
                 className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
               >
-                Send
+                Sign Up
               </button>
             </div>
           </div>

@@ -16,12 +16,12 @@ const SignIn = () => {
           </h3>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="overflow-hidden drop-shadow-md sm:rounded-md">
+          <div className="overflow-hidden drop-shadow-2xl sm:rounded-md">
             <div className="bg-white px-4 py-5 sm:p-6">
               <div className="grid grid-cols-6 gap-6">
                 <div className="col-span-6">
                   <input
-                    type="text"
+                    type="email"
                     name="email-address"
                     {...register('EmailAddress', { required: true })}
                     placeholder="Email Address"
@@ -33,9 +33,12 @@ const SignIn = () => {
 
                 <div className="col-span-6">
                   <input
-                    type="text"
+                    type="password"
                     name="password"
-                    {...register('password')}
+                    {...register('password', {
+                      required: true,
+                      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+                    })}
                     placeholder="password"
                     id="password"
                     autoComplete="password"
@@ -49,7 +52,7 @@ const SignIn = () => {
                 type="submit"
                 className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
               >
-                Send
+                Sign In
               </button>
             </div>
           </div>
