@@ -1,7 +1,12 @@
 import React from 'react';
+import BlogsList from '../components/Blogs/BlogsList';
 
 const Home = () => {
-  return <div className="font-bold text-blue-500 text-base">Home</div>;
+  return (
+    <div className="">
+      <BlogsList />
+    </div>
+  );
 };
 
 export default Home;
