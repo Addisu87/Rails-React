@@ -5,11 +5,11 @@ import {
   FaDesktop,
   FaNewspaper,
   FaRegSun,
-  FaRegWindowClose,
   FaSearch,
   FaSignOutAlt
 } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
+
 const Sidebar = () => {
   const [show, setShow] = useState(false);
 
@@ -26,26 +26,20 @@ const Sidebar = () => {
       <div className="w-full h-full bg-gray-200">
         <div className="flex flex-no-wrap">
           {/* Sidebar starts */}
-          <nav
-            className={`absolute h-screen z-40 lg:relative w-64 md:w-96 drop-shadow-md pb-4 bg-gray-100 sm:hidden lg:block transition duration-150 ease-in-out ${
-              show
-                ? 'w-full h-full absolute z-40  transform  translate-x-full'
-                : 'w-full h-full absolute z-40  transform translate-x-0'
-            }`}
-          >
-            <button
-              type="button"
-              className="fixed z-40 cursor-pointer border-none left-8 right-8"
-              onClick={() => setShow(!show)}
-            >
-              {show ? (
-                <MdClose className="text-color-gray w-10 h-10" />
-              ) : (
-                <FaBars className="text-color-gray w-10 h-10" />
-              )}
-            </button>
+          <nav className="absolute h-screen z-40 lg:relative w-64 md:w-96 drop-shadow-md pb-4 bg-gray-100 sm:hidden lg:block transition duration-150 ease-in-out">
+            <div className="bg-gray-200 opacity-50 absolute h-full w-full">
+              <button
+                type="button"
+                className="absolute z-40 cursor-pointer border-none left-8 right-8"
+                onClick={() => setShow(!show)}
+              >
+                {show ? (
+                  <MdClose className="text-color-gray w-10 h-10" />
+                ) : (
+                  <FaBars className="text-color-gray w-10 h-10" />
+                )}
+              </button>
 
-            <div className="bg-gray-200 opacity-50 absolute h-full w-full sm:hidden">
               <ul
                 aria-orientation="vertical"
                 className={`py-6 ${show ? 'w-full' : 'hidden'}`}
@@ -100,9 +94,12 @@ const Sidebar = () => {
               </div>
             </nav>
             {/* Navigation ends */}
-            {/* Remove class [ h-64 ] when adding a card block */}
             <div className="container mx-auto py-10 h-64 md:w-4/5 w-11/12 px-6">
-              <div className="w-full h-full">Hello</div>
+              <div className="w-full h-full ">
+                {Pages.map(({ page, url }, i) => (
+                  <a href={url}>{page}</a>
+                ))}
+              </div>
             </div>
           </div>
         </div>

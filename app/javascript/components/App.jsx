@@ -8,7 +8,6 @@ import SignUp from '../pages/SignUp';
 import Sidebar from './Sidebar';
 import Blogs from '../pages/Blogs';
 import AddBlogForm from './Blogs/AddBlogForm';
-import EditBlogForm from './Blogs/EditBlogForm';
 
 const App = () => {
   return (
@@ -22,7 +21,6 @@ const App = () => {
             <Route path="/projects" element={<Projects />} />
             <Route path="/blogs" element={<Blogs />}>
               <Route path="/blogs/:blogId" element={<AddBlogForm />} />
-              {/* <Route path="/editBlog/:blogId" element={<EditBlogForm />} /> */}
             </Route>
 
             <Route path="/signin" element={<SignIn />} />
