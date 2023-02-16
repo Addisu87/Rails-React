@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectBlogById } from '../../redux/blogsSlice';
 import BlogAuthor from './BlogAuthor';
+import EditBlogForm from './EditBlogForm';
 import ReactionButtons from './ReactionButtons';
 import { TimeAgo } from './TimeAgo';
 
@@ -30,7 +31,7 @@ const SingleBlogPage = ({ match }) => {
         <p className="blog-content">{blog.content}</p>
         <ReactionButtons blog={blog} />
         <Link to={`/editBlog/${blog.id}`} className="button">
-          Edit blog
+          <EditBlogForm />
         </Link>
       </article>
     </section>

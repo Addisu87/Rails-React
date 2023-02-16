@@ -1,10 +1,10 @@
 import React from 'react';
-import BlogsList from '../components/Blogs/BlogsList';
+import Blogs from './Blogs';
 
 const Home = () => {
   return (
     <div className="">
-      <BlogsList />
+      <Blogs />
     </div>
   );
 };
