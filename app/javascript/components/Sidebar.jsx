@@ -11,13 +11,12 @@ import {
 } from 'react-icons/fa';
 import { MdClose } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
-
 const Sidebar = () => {
   // hamburger menu (menu button)
   const [navbarOpen, setNavbarOpen] = useState(false);
 
   const SideLinks = [
-    { title: 'Home', icon: <FaDesktop />, url: '/home' },
+    { title: 'Home', icon: <FaDesktop />, url: '/' },
     { title: 'About', icon: <FaBell />, url: '/about' },
     { title: 'Projects', icon: <FaRegSun />, url: '/projects' },
     { title: 'Reports', icon: <FaNewspaper />, url: '/reports' },
@@ -45,31 +44,20 @@ const Sidebar = () => {
             navbarOpen ? 'w-full' : 'hidden'
           }`}
         >
-          <li>
-            <NavLink to="/" onClick={() => setNavbarOpen(false)}>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/about" onClick={() => setNavbarOpen(false)}>
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/projects" onClick={() => setNavbarOpen(false)}>
-              Projects
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/reports" onClick={() => setNavbarOpen(false)}>
-              Reports
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/home" onClick={() => setNavbarOpen(false)}>
-              Logout
-            </NavLink>
-          </li>
+          {SideLinks.map(({ title, url, icon }, i) => (
+            <li key={i}>
+              <a
+                href={url}
+                onClick={() => setNavbarOpen(false)}
+                className="flex items-center space-x-3 text-gray-700 p-2
+                rounded-md font-medium hover:bg-gray-200 bg-gray-200
+                focus:shadow-outline"
+              >
+                <span className="text-gray-600 h-6 w-6 ">{icon}</span>
+                <span>{title}</span>
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
       {/* Sidebar ends */}
