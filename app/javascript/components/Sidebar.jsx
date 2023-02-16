@@ -27,7 +27,7 @@ const Sidebar = () => {
         <div className="flex flex-no-wrap">
           {/* Sidebar starts */}
 
-          <nav className="absolute h-screen z-40 sm:relative w-64 md:w-96 shadow pb-4 bg-gray-100 sm:hidden transition duration-150 ease-in-out">
+          <nav className="absolute h-screen z-40 lg:relative w-64 md:w-96 drop-shadow-md pb-4 bg-gray-100 hidden lg:block transition duration-150 ease-in-out">
             <div
               onClick={() => setShow(!show)}
               className="bg-gray-200 opacity-50 absolute h-full w-full sm:hidden"
@@ -73,6 +73,42 @@ const Sidebar = () => {
             </ul>
           </nav>
           {/* Sidebar ends */}
+
+          {/* Navigation starts */}
+          <div className="w-full">
+            <nav className="h-16 flex items-center lg:items-stretch justify-end lg:justify-between bg-white shadow relative z-10">
+              <div className="hidden lg:flex w-full pr-6">
+                <div className="w-1/2 h-full hidden lg:flex items-center pl-6 pr-24">
+                  <div className="relative w-full">
+                    <div className="text-gray-500 absolute ml-4 inset-0 m-auto w-4 h-4">
+                      <FaSearch className="w-4 h-4" />
+                    </div>
+
+                    <input
+                      className="border border-gray-100 focus:outline-none focus:border-indigo-700 rounded w-full text-sm text-gray-500 bg-gray-100 pl-12 py-2"
+                      type="text"
+                      placeholder="Search"
+                    />
+                  </div>
+                </div>
+
+                <div className="w-1/2 hidden lg:flex">
+                  <div className="w-full flex items-center pl-8 justify-end">
+                    <div className="h-full w-20 flex items-center justify-center border-r border-l">
+                      <div className="relative cursor-pointer text-gray-600">
+                        My profile
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </nav>
+            {/* Navigation ends */}
+            {/* Remove class [ h-64 ] when adding a card block */}
+            <div className="container mx-auto py-10 h-64 md:w-4/5 w-11/12 px-6">
+              <div className="w-full h-full">Hello</div>
+            </div>
+          </div>
         </div>
       </div>
     </>

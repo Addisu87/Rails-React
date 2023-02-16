@@ -22,7 +22,7 @@ const SingleBlogPage = ({ match }) => {
 
   return (
     <section>
-      <article className="blog">
+      <article className="container mx-auto py-10 h-64 md:w-4/5 w-11/12 px-6">
         <h2>{blog.title}</h2>
         <div>
           <BlogAuthor userId={blog.user} />

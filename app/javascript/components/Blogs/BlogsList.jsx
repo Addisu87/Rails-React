@@ -43,7 +43,7 @@ const BlogsList = () => {
   }
 
   return (
-    <section className="blogs-list">
+    <section className="container mx-auto py-10 h-64 md:w-4/5 w-11/12 px-6">
       <h2>Blogs</h2>
       {content}
     </section>
