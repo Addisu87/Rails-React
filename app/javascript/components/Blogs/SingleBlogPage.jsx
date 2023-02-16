@@ -29,7 +29,7 @@ const SingleBlogPage = ({ match }) => {
         </div>
         <p className="blog-content">{blog.content}</p>
         <ReactionButtons blog={blog} />
-        <Link to={`/editblog/${blog.id}`} className="button">
+        <Link to={`/editBlog/${blog.id}`} className="button">
           Edit blog
         </Link>
       </article>
