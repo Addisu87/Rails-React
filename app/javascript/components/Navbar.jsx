@@ -24,11 +24,22 @@ const Navbar = () => {
 
   return (
     <div className="bg-gray-50">
-      <div className="bg-white xl:hidden flex text-gray-800  hover:text-black focus:outline-none focus:text-black justify-between w-full p-6 items-center ">
-        <button className="flex justify-between  items-center space-x-3 mx-auto">
+      <nav className="bg-white flex text-gray-800  hover:text-black focus:outline-none focus:text-black justify-between w-full p-6 items-center space-x-3">
+        <button className="flex justify-between items-center space-x-3">
           <FaDesktop />
           <p className="text-2xl leading-6 ">SideBar</p>
         </button>
+
+        <div className="relative flex justify-start w-72 text-gray-800 rounded items-center border border-gray-300 focus:outline-none focus:border-gray-400">
+          <input
+            type="text"
+            placeholder="Search"
+            className="placeholder-gray-800 text-base placeholder-text-base leading-4 py-3 w-72 pl-12 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded "
+          />
+          <FaSearch className="absolute left-4 w-4 h-4" />
+        </div>
+      </nav>
+      <div className="bg-white xl:hidden flex text-gray-800  hover:text-black focus:outline-none focus:text-black justify-between w-full p-6 items-center sm:w-72">
         <div aria-label="toggler" className="flex justify-center items-center">
           <button
             id="open"
@@ -52,7 +63,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
-      <div
+      <nav
         id="Main"
         className={`${
           show ? '-translate-x-full' : 'translate-x-0'
@@ -63,14 +74,6 @@ const Navbar = () => {
           <p className="text-2xl leading-6 ">SideBar</p>
         </button>
         <div className="xl:mt-6 flex flex-col justify-start items-start  px-4 w-full space-y-3 pb-5 ">
-          <div className=" relative focus:outline-none flex justify-start w-full   text-gray-800 rounded  items-center border-gray-300 focus:border-gray-400 border  ">
-            <input
-              type="text"
-              placeholder="Search"
-              className="placeholder-gray-800 text-base placeholder-text-base leading-4 py-3 w-full pl-12 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded "
-            />
-            <FaSearch className="absolute left-4 w-4 h-4" />
-          </div>
           {SideLinks.map(({ icon, title, url }, index) => (
             <a href={url} key={index}>
               <button className="focus:outline-none flex justify-start hover:text-white focus:bg-blue-500 focus:text-white hover:bg-blue-500 text-gray-600 rounded py-3 pl-4 items-center space-x-6 w-full">
@@ -103,7 +106,7 @@ const Navbar = () => {
             <FaArrowRight className="text-white" />
           </button>
         </div>
-      </div>
+      </nav>
     </div>
   );
 };
