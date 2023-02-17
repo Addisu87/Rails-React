@@ -30,7 +30,7 @@ const Sidebar = () => {
   return (
     <div className="bg-gray-50">
       {/* Navigation start */}
-      <nav className="sticky top-0 bg-white flex text-gray-800  hover:text-black focus:outline-none focus:text-black justify-between w-full p-6 items-center space-x-3">
+      <nav className="sticky top-0 bg-white flex text-gray-800  hover:text-black focus:outline-none focus:text-black justify-between w-full p-6 items-center space-x-3 drop-shadow-md">
         <button className="flex justify-between items-center space-x-3">
           <FaDesktop />
           <p className="text-2xl leading-6 ">SideBar</p>
@@ -70,12 +70,12 @@ const Sidebar = () => {
           </button>
         </div>
       </div>
-      {/* Sidbar start */}
+      {/* Sidebar start */}
       <nav
         id="Main"
         className={`${
           show ? '-translate-x-full' : 'translate-x-0'
-        }  bg-white transform  xl:translate-x-0 ease-in-out transition duration-500 flex justify-start items-start w-full sm:w-72 flex-col h-full absolute`}
+        }  bg-white transform  xl:translate-x-0 ease-in-out transition duration-500 flex justify-start items-start w-full sm:w-72 flex-col h-full absolute drop-shadow-lg`}
       >
         <div className="mt-6 flex flex-col justify-start items-start  px-4 w-full space-y-3 pb-5 ">
           <ul className="xl:mt-6 flex flex-col justify-start items-start px-4 w-full space-y-3 pb-5 ">
