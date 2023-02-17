@@ -7,6 +7,7 @@ import {
   FaNewspaper,
   FaRegSun,
   FaSearch,
+  FaSignInAlt,
   FaSignOutAlt
 } from 'react-icons/fa';
 import { MdClose, MdPerson } from 'react-icons/md';
@@ -18,8 +19,12 @@ const Navbar = () => {
     { title: 'Home', icon: <FaDesktop />, url: '/' },
     { title: 'About', icon: <MdPerson />, url: '/about' },
     { title: 'Projects', icon: <FaRegSun />, url: '/projects' },
-    { title: 'Blogs', icon: <FaBell />, url: '/blogs' },
-    { title: 'Logout', icon: <FaSignOutAlt />, url: '/signup' }
+    { title: 'Blogs', icon: <FaBell />, url: '/blogs' }
+  ];
+
+  const Profiles = [
+    { title: 'SignIn', icon: <FaSignInAlt />, url: '/signin' },
+    { title: 'LogOut', icon: <FaSignOutAlt />, url: '/signup' }
   ];
 
   return (
@@ -72,23 +77,47 @@ const Navbar = () => {
           show ? '-translate-x-full' : 'translate-x-0'
         }  bg-white transform  xl:translate-x-0 ease-in-out transition duration-500 flex justify-start items-start w-full sm:w-72 flex-col h-full absolute`}
       >
-        <ul className="xl:mt-6 flex flex-col justify-start items-start px-4 w-full space-y-3 pb-5 ">
-          {SideLinks.map(({ icon, title, url }, index) => (
-            <li
-              key={index}
-              className="focus:outline-none flex justify-start hover:text-white focus:bg-blue-500 focus:text-white hover:bg-blue-500 text-gray-600 rounded py-3 pl-4 items-center space-x-6 w-full"
-            >
-              <span>{icon}</span>
-              <a href={url}>
-                <p className="text-base leading-4">{title}</p>
-              </a>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-6 flex flex-col justify-start items-start  px-4 w-full space-y-3 pb-5 ">
+          <ul className="xl:mt-6 flex flex-col justify-start items-start px-4 w-full space-y-3 pb-5 ">
+            {SideLinks.map(({ icon, title, url }, index) => (
+              <li
+                key={index}
+                className="focus:outline-none flex justify-start hover:text-white focus:bg-blue-500 focus:text-white hover:bg-blue-500 text-gray-600 rounded py-3 pl-4 items-center space-x-6 w-full"
+              >
+                <span>{icon}</span>
+                <a href={url}>
+                  <p className="text-base leading-4">{title}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Horizontal ruler start */}
         <div className="w-full px-4">
           <hr className=" border-gray-100 w-full" />
         </div>
+        {/* Horizontal ruler end */}
 
+        {/* User profile's start */}
+        <div className="mt-6 flex flex-col justify-start items-start px-4 w-full space-y-3 pb-5">
+          <ul className="xl:mt-6 flex flex-col justify-start items-start px-4 w-full space-y-3 pb-5 ">
+            {Profiles.map(({ icon, title, url }, index) => (
+              <li
+                key={index}
+                className="focus:outline-none flex justify-start hover:text-white focus:bg-blue-500 focus:text-white hover:bg-blue-500 text-gray-600 rounded py-3 pl-4 items-center space-x-6 w-full"
+              >
+                <span>{icon}</span>
+                <a href={url}>
+                  <p className="text-base leading-4">{title}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        {/* User profile's end */}
+
+        {/* Footer start */}
         <div className=" w-full mt-36 flex bg-blue-500 justify-start space-x-2 items-center h-full py-4 px-3.5">
           <div>
             <img
@@ -112,6 +141,7 @@ const Navbar = () => {
             <FaArrowRight className="text-white" />
           </button>
         </div>
+        {/* Footer start */}
       </nav>
       {/* Sidebar end */}
     </div>
