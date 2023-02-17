@@ -69,10 +69,6 @@ const Navbar = () => {
           show ? '-translate-x-full' : 'translate-x-0'
         } bg-white transform  xl:translate-x-0 ease-in-out transition duration-500 flex justify-start items-start w-full sm:w-72   flex-col h-full`}
       >
-        <button className="hidden xl:flex text-gray-800 hover:text-black focus:outline-none focus:text-black justify-start px-6 pt-6 items-center space-x-3 w-full">
-          <FaDesktop />
-          <p className="text-2xl leading-6 ">SideBar</p>
-        </button>
         <ul className="xl:mt-6 flex flex-col justify-start items-start  px-4 w-full space-y-3 pb-5 ">
           {SideLinks.map(({ icon, title, url }, index) => (
             <li
