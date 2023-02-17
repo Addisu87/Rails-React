@@ -3,8 +3,9 @@ import { useForm } from 'react-hook-form';
 
 const SignIn = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    window.location.href = `mailto:addisuhaile87@gmail.com?body=${data.name}. &body=${data.message}`;
+  const onSubmit = (values) => {
+    console.log(JSON.stringify(values, null, 2));
+    return false;
   };
 
   return (
