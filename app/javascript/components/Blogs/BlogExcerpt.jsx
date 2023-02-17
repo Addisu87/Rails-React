@@ -6,7 +6,7 @@ import { TimeAgo } from './TimeAgo';
 
 const BlogExcerpt = ({ blog }) => {
   return (
-    <article className="container mx-auto py-10 h-64 md:w-4/5 w-11/12 px-6">
+    <article className="px-2 py-2 border border-slate-700 rounded-md pt-2 ">
       <h3>{blog.title}</h3>
       <div>
         <BlogAuthor userId={blog.user} />

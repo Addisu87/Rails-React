@@ -66,7 +66,7 @@ const blogsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchBlogs.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.status = 'succeed';
         // Add any fetched blogs to the array
         state.blogs = state.blogs.concat(action.payload);
       })
