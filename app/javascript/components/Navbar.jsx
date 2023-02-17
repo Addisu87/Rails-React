@@ -73,16 +73,19 @@ const Navbar = () => {
           <FaDesktop />
           <p className="text-2xl leading-6 ">SideBar</p>
         </button>
-        <div className="xl:mt-6 flex flex-col justify-start items-start  px-4 w-full space-y-3 pb-5 ">
+        <ul className="xl:mt-6 flex flex-col justify-start items-start  px-4 w-full space-y-3 pb-5 ">
           {SideLinks.map(({ icon, title, url }, index) => (
-            <a href={url} key={index}>
-              <button className="focus:outline-none flex justify-start hover:text-white focus:bg-blue-500 focus:text-white hover:bg-blue-500 text-gray-600 rounded py-3 pl-4 items-center space-x-6 w-full">
-                <span className="">{icon}</span>
-                <p className="text-base leading-4">{title}</p>
-              </button>
-            </a>
+            <li
+              key={index}
+              className="focus:outline-none flex justify-start hover:text-white focus:bg-blue-500 focus:text-white hover:bg-blue-500 text-gray-600 rounded py-3 pl-4 items-center space-x-6 w-full"
+            >
+              <a href={url}>
+                <span>{icon}</span>
+              </a>
+              <p className="text-base leading-4">{title}</p>
+            </li>
           ))}
-        </div>
+        </ul>
         <div className="w-full px-4">
           <hr className=" border-gray-100 w-full" />
         </div>
