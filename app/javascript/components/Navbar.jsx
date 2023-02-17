@@ -24,6 +24,7 @@ const Navbar = () => {
 
   return (
     <div className="bg-gray-50">
+      {/* Navigation start */}
       <nav className="bg-white flex text-gray-800  hover:text-black focus:outline-none focus:text-black justify-between w-full p-6 items-center space-x-3">
         <button className="flex justify-between items-center space-x-3">
           <FaDesktop />
@@ -39,7 +40,8 @@ const Navbar = () => {
           <FaSearch className="absolute left-4 w-4 h-4" />
         </div>
       </nav>
-      <div className="bg-white xl:hidden flex text-gray-800  hover:text-black focus:outline-none focus:text-black justify-between w-full p-6 items-center sm:w-72">
+      {/* Navigation end */}
+      <div className=" bg-white xl:hidden flex text-gray-800  hover:text-black focus:outline-none focus:text-black justify-between w-full p-6 items-center sm:w-72">
         <div aria-label="toggler" className="flex justify-center items-center">
           <button
             id="open"
@@ -63,6 +65,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+      {/* Sidbar start */}
       <nav
         id="Main"
         className={`${
@@ -75,10 +78,10 @@ const Navbar = () => {
               key={index}
               className="focus:outline-none flex justify-start hover:text-white focus:bg-blue-500 focus:text-white hover:bg-blue-500 text-gray-600 rounded py-3 pl-4 items-center space-x-6 w-full"
             >
+              <span>{icon}</span>
               <a href={url}>
-                <span>{icon}</span>
+                <p className="text-base leading-4">{title}</p>
               </a>
-              <p className="text-base leading-4">{title}</p>
             </li>
           ))}
         </ul>
@@ -88,7 +91,11 @@ const Navbar = () => {
 
         <div className=" w-full mt-36 flex bg-blue-500 justify-start space-x-2 items-center h-full py-4 px-3.5">
           <div>
-            <img src="https://i.ibb.co/fxrbS6p/Ellipse-2-2.png" alt="avatar" />
+            <img
+              src="https://e7.pngegg.com/pngimages/211/502/png-clipart-lionel-messi-art-lionel-messi-wpap-desktop-lionel-messi-face-poster.png"
+              alt="avatar"
+              className="w-12 h-12 rounded-full"
+            />
           </div>
           <div className="flex flex-col justify-start items-start space-y-2">
             <p className="cursor-pointer text-base leading-4 text-white">
@@ -106,6 +113,7 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
+      {/* Sidebar end */}
     </div>
   );
 };
