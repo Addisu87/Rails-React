@@ -41,12 +41,14 @@
 
 ### Tech Stack <a name="React"></a>
 
-> react-contenteditable, match-sorter.
+> React, Ruby on Rails.
 
 <details>
   <summary>Client</summary>
   <ul>
     <li><a href="https://reactjs.org/">React.js</a></li>
+    <li><a href="https://ruby.org/">Ruby.js</a></li>
+    <li><a href="https://ruby.org/">Ruby on Rails</a></li>
   </ul>
 </details>
 
@@ -56,7 +58,7 @@
 
 > Describe between 1-3 key features of the application.
 
-- **Create notes**
+- It shows users a list of blogs and they can add new blogs using a form.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -82,72 +84,54 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need:
 
-<!--
-Example command:
-
 ```sh
  npm install
 ```
- -->
 
 ### Setup
 
 Clone this repository to your desired folder:
 
-<!--
-Example commands:
-
 ```sh
   cd notion
   git clone git@github.com:Addisu87/rails-react.git
 ```
---->
 
 ### Install
 
 Install this project with:
 
-<!--
-Example command:
-
 ```sh
   cd rails-react
   npm install
   bundle install
+  rails db:create
+  rails db:migrate
 ```
---->
 
 ### Usage
 
 To run the project, execute the following command:
 
-<!--
-Example command:
-
 ```sh
   ./bin/dev
 ```
---->
 
 ### Deployment
 
 You can deploy this project using:
 
-<!--
 Example:
 
 ```sh
-
+  render or railway
 ```
- -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
 
 ## 👥 Authors <a name="authors"></a>
-
-> Mention all of the collaborators of this project.
 
 👤 **Addisu Haile**
 
@@ -173,7 +157,7 @@ Feel free to check the [issues page](../../issues/).
 
 > Write a message to encourage readers to support your project
 
-If you like this project...
+If you like this project, please contact me. Here is my address and portfolio link https://portfolio-addisu-addisu87.vercel.app/.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -183,7 +167,7 @@ If you like this project...
 
 > Give credit to everyone who inspired your codebase.
 
-I would like to thank...
+I would like to thank my friend for helping me.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
