@@ -8,11 +8,13 @@ import SignUp from '../pages/SignUp';
 import Sidebar from './Sidebar';
 import Blogs from '../pages/Blogs';
 import AddBlogForm from './Blogs/AddBlogForm';
+import Index from './Index';
 
 const App = () => {
   return (
     <>
-      <Sidebar />
+      {/* <Sidebar /> */}
+      <Index />
       <main>
         <Router>
           <Routes>
