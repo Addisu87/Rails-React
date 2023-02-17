@@ -26,9 +26,21 @@ const Sidebar = () => {
     <>
       <div className="bg-gray-200">
         <div className="bg-white xl-hidden flex text-gray-800 hover:text-black focus:outline-none focus:text-black justify-between items-center p-6">
-          <button className="flex justify-between items-center span-x-3">
-            <FaDesktop />
-          </button>
+          <div className="flex flex-row justify-between items-center span-x-3">
+            <button className="flex justify-between items-center span-x-3">
+              <FaDesktop />
+            </button>
+
+            <div className="relative focus:outline-none flex justify-start w-full text-gray-800 rounded items-center border border-gray-300 focus:border-gray-400">
+              <input
+                type="text"
+                placeholder="Search"
+                className="placeholder-gray-800 text-base placeholder-text-base leading-4 py-3 px-8 w-full pl-16 rounded focus:outline-none focus:ring-offset-2 focus:ring-gray-600"
+              />
+              <FaSearch className="absolute left-4 w-5 h-5" />
+            </div>
+          </div>
+
           <div
             aria-label="toggler"
             className="flex justify-center items-center"
@@ -66,14 +78,6 @@ const Sidebar = () => {
             <FaDesktop />
             <p className="text-gray-900">Side Bar</p>
           </button>
-          <div className="relative focus:outline-none flex justify-start w-full text-gray-800 rounded items-center border border-gray-300 focus:border-gray-400">
-            <input
-              type="text"
-              placeholder="Search"
-              className="placeholder-gray-800 text-base placeholder-text-base leading-4 py-3 px-8 w-full pl-16 rounded focus:outline-none focus:ring-offset-2 focus:ring-gray-600"
-            />
-            <FaSearch className="absolute left-4 w-5 h-5" />
-          </div>
 
           <ul className="xl:mt-6 flex flex-col justify-start items-center px-4 w-full space-y-3 pb-5">
             {SideLinks.map(({ title, url, icon }, i) => (
