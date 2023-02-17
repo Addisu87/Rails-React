@@ -8,13 +8,11 @@ import SignUp from '../pages/SignUp';
 import Sidebar from './Sidebar';
 import Blogs from '../pages/Blogs';
 import AddBlogForm from './Blogs/AddBlogForm';
-import Navbar from './Navbar';
 
 const App = () => {
   return (
     <>
-      {/* <Sidebar /> */}
-      <Navbar />
+      <Sidebar />
       <main>
         <Router>
           <Routes>
