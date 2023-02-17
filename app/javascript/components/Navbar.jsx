@@ -9,23 +9,23 @@ import {
   FaSearch,
   FaSignOutAlt
 } from 'react-icons/fa';
-import { MdClose } from 'react-icons/md';
+import { MdClose, MdPerson } from 'react-icons/md';
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
 
   const SideLinks = [
     { title: 'Home', icon: <FaDesktop />, url: '/' },
-    { title: 'About', icon: <FaBell />, url: '/about' },
+    { title: 'About', icon: <MdPerson />, url: '/about' },
     { title: 'Projects', icon: <FaRegSun />, url: '/projects' },
-    { title: 'Blogs', icon: <FaNewspaper />, url: '/blogs' },
+    { title: 'Blogs', icon: <FaBell />, url: '/blogs' },
     { title: 'Logout', icon: <FaSignOutAlt />, url: '/signup' }
   ];
 
   return (
     <div className="bg-gray-50">
       {/* Navigation start */}
-      <nav className="bg-white flex text-gray-800  hover:text-black focus:outline-none focus:text-black justify-between w-full p-6 items-center space-x-3">
+      <nav className="sticky top-0 bg-white flex text-gray-800  hover:text-black focus:outline-none focus:text-black justify-between w-full p-6 items-center space-x-3">
         <button className="flex justify-between items-center space-x-3">
           <FaDesktop />
           <p className="text-2xl leading-6 ">SideBar</p>
@@ -70,9 +70,9 @@ const Navbar = () => {
         id="Main"
         className={`${
           show ? '-translate-x-full' : 'translate-x-0'
-        } bg-white transform  xl:translate-x-0 ease-in-out transition duration-500 flex justify-start items-start w-full sm:w-72   flex-col h-full`}
+        }  bg-white transform  xl:translate-x-0 ease-in-out transition duration-500 flex justify-start items-start w-full sm:w-72 flex-col h-full absolute`}
       >
-        <ul className="xl:mt-6 flex flex-col justify-start items-start  px-4 w-full space-y-3 pb-5 ">
+        <ul className="xl:mt-6 flex flex-col justify-start items-start px-4 w-full space-y-3 pb-5 ">
           {SideLinks.map(({ icon, title, url }, index) => (
             <li
               key={index}
