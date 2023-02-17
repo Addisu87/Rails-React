@@ -23,22 +23,13 @@ const Sidebar = () => {
 
   return (
     <>
-      <div className="w-full h-full bg-gray-200">
-        <div className="flex flex-no-wrap">
+      <div className="bg-gray-200">
+        <div className="bg-white xl-hidden flex text-gray-800 hover:text-black focus:outline-none focus:text-black justify-between items-center p-6">
+          <button className="flex justify-between items-center span-x-3">
+            <FaDesktop />
+          </button>
           {/* Sidebar starts */}
           <nav className="w-48 absolute h-screen z-40 md:w-64 drop-shadow-md pb-4 bg-gray-200 sm:hidden lg:block transition duration-150 ease-in-out opacity-50">
-            <button
-              type="button"
-              className="absolute z-40 cursor-pointer border-none left-8 right-8"
-              onClick={() => setShow(!show)}
-            >
-              {show ? (
-                <MdClose className="text-color-gray w-10 h-10" />
-              ) : (
-                <FaBars className="text-color-gray w-10 h-10" />
-              )}
-            </button>
-
             <ul
               aria-orientation="vertical"
               className={`py-6 ${show ? 'w-full' : 'hidden'}`}
@@ -60,38 +51,6 @@ const Sidebar = () => {
               ))}
             </ul>
           </nav>
-          {/* Sidebar ends */}
-
-          {/* Navigation starts */}
-          <div className="w-full">
-            <nav className="h-16 flex items-center lg:items-stretch justify-end lg:justify-between bg-white shadow relative z-10">
-              <div className="hidden lg:flex w-full pr-6">
-                <div className="w-1/2 h-full hidden lg:flex items-center pl-6 pr-24">
-                  <div className="relative w-full">
-                    <div className="text-gray-500 absolute ml-4 inset-0 m-auto w-4 h-4">
-                      <FaSearch className="w-4 h-4" />
-                    </div>
-                    <input
-                      className="border border-gray-100 focus:outline-none focus:border-indigo-700 rounded w-full text-sm text-gray-500 bg-gray-100 pl-12 py-2"
-                      type="text"
-                      placeholder="Search"
-                    />
-                  </div>
-                </div>
-
-                <div className="w-1/2 hidden lg:flex">
-                  <div className="w-full flex items-center pl-8 justify-end">
-                    <div className="h-full w-20 flex items-center justify-center border-r border-l">
-                      <div className="relative cursor-pointer text-gray-600">
-                        My profile
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </nav>
-            {/* Navigation ends */}
-          </div>
         </div>
       </div>
     </>
