@@ -1,9 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Base URL
-const API = 'http://localhost:3000';
-
 //  Initial States
 const initialState = {
   blogs: [],
@@ -13,7 +10,7 @@ const initialState = {
 
 //createAsyncThunk API generates thunks that automatically dispatch those "start/success/failure" actions.
 export const fetchBlogs = createAsyncThunk('blogs/fetchBlogs', async () => {
-  const response = await axios.get(`${API}/blogs`);
+  const response = await axios.get(`${baseURL}/blogs`);
   return response.data;
 });
 
@@ -21,7 +18,7 @@ export const addNewBlog = createAsyncThunk(
   'blogs/addNewBlog',
   async (initialBlog) => {
     // We send the initial data to the local API server
-    const response = await axios.post(`${API}/blogs`, initialBlog);
+    const response = await axios.post(`${baseURL}/blogs`, initialBlog);
     // The response includes the complete blog object, including unique ID
     return response.data;
   }

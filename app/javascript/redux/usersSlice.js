@@ -6,11 +6,13 @@ const initialState = {
   users: null
 };
 
+//createAsyncThunk API generates thunks that automatically dispatch those "login/logout" actions.
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-  const response = await axios.get(`${API}/users`);
+  const response = await axios.get(`${baseURL}/users`);
   return response.data;
 });
 
+// Slice Reducer
 const usersSlice = createSlice({
   name: 'users',
   initialState,
@@ -31,6 +33,6 @@ const usersSlice = createSlice({
 
 export const { login, logout } = usersSlice.actions;
 
-export const selectUser = (state) => state.user.user;
+export const selectUser = (state) => state.users.users;
 
 export default usersSlice.reducer;
