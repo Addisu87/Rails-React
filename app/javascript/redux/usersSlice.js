@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-  const response = await axios.get(`${url}/users`);
+  const response = await axios.get(`${API}/users`);
   return response.data;
 });
 
