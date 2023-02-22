@@ -66,7 +66,10 @@ const SignUpScreen = () => {
                   <input
                     type="password"
                     name="password"
-                    {...register('password')}
+                    {...register('password', {
+                      required: true,
+                      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+                    })}
                     placeholder="password"
                     id="password"
                     autoComplete="password"
