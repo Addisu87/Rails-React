@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import SignUpScreen from './SignUpScreen';
 
 const LogInScreen = () => {
@@ -9,9 +8,12 @@ const LogInScreen = () => {
     <div className="flex relative flex-col md:text-left md:flex-row  max-w-7xl px-10 justify-evenly mx-auto items-center">
       <div className="mt-20 mb-12 md:col-span-2 md:mt-24 space-y-8">
         <div className="px-4 sm:px-0">
-          <h3 className="text-xl text-center font-medium leading-6 text-gray-900">
+          <button
+            onClick={() => setSignIn(true)}
+            className="text-xl text-center font-medium leading-6 text-gray-900"
+          >
             Sign In
-          </h3>
+          </button>
         </div>
         {signIn ? (
           <SignUpScreen />

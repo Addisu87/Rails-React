@@ -23,7 +23,7 @@ const Sidebar = () => {
   ];
 
   const Profiles = [
-    { title: 'SignIn', icon: <FaSignInAlt />, url: '/signin' },
+    { title: 'SignIn', icon: <FaSignInAlt />, url: '/login' },
     { title: 'LogOut', icon: <FaSignOutAlt />, url: '/signup' }
   ];
 

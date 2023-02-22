@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
 import About from '../pages/About';
 import Projects from '../pages/Projects';
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
 import Sidebar from './Sidebar';
 import Blogs from '../pages/Blogs';
 import AddBlogForm from './Blogs/AddBlogForm';
+import LogInScreen from '../pages/LogInScreen';
+import SignUpScreen from '../pages/SignUpScreen';
 
 const App = () => {
   return (
@@ -23,8 +23,8 @@ const App = () => {
               <Route path="/blogs/:blogId" element={<AddBlogForm />} />
             </Route>
 
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<LogInScreen />} />
+            <Route path="/signup" element={<SignUpScreen />} />
           </Routes>
         </Router>
       </main>
