@@ -2,15 +2,30 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const SignUpScreen = ({ setCurrUser, setShow }) => {
-  const { register, handleSubmit } = useForm();
-  const formRef = useRef();
+  const [currUser, setCurrUser] = useState(null);
+  const [show, setShow] = useState(true);
 
-  const onSubmit = (values) => {
-    console.log(JSON.stringify(values, null, 2));
-    return false;
+  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { register, handleSubmit } = useForm();
+  const signUp = async () => {
+    await client
+      .post('/signup', {
+        userName,
+        email,
+        password
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
   };
 
-  const handleClick = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     setShow(true);
   };
@@ -30,27 +45,17 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
                 <div className="col-span-6">
                   <input
                     type="text"
-                    name="first-name"
-                    {...register('FirstName', {
+                    name="user-name"
+                    {...register('userName', {
                       required: true,
                       maxLength: 20
                     })}
-                    placeholder="First Name"
-                    id="first-name"
-                    autoComplete="first-name"
+                    placeholder="User Name"
+                    id="user-name"
+                    autoComplete="user-name"
                     className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  />
-                </div>
-
-                <div className="col-span-6">
-                  <input
-                    type="text"
-                    name="lastName"
-                    {...register('lastName', { pattern: /^[A-Za-z]+$/i })}
-                    placeholder="lastName"
-                    id="lastName"
-                    autoComplete="lastName"
-                    className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
                   />
                 </div>
 
@@ -66,6 +71,8 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
                     id="email-address"
                     autoComplete="email"
                     className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 
@@ -81,13 +88,14 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
                     id="password"
                     autoComplete="password"
                     className="mt-1 block w-full  border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
               </div>
             </div>
             <div className="bg-gray-50 px-4 py-3 text-center md:text-left sm:px-6">
               <button
-                onClick={handleClick}
                 type="submit"
                 className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
               >

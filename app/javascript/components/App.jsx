@@ -8,16 +8,16 @@ import Blogs from '../pages/Blogs';
 import AddBlogForm from './Blogs/AddBlogForm';
 import LogInScreen from '../pages/LogInScreen';
 import SignUpScreen from '../pages/SignUpScreen';
-import User from './User';
+// import User from './User';
 
 const App = () => {
-  const [currUser, setCurrUser] = useState(null);
+  // const [currUser, setCurrUser] = useState(null);
 
   return (
     <>
       <Sidebar />
       <main>
-        <User currUser={currUser} setCurrUser={setCurrUser} />
+        {/* <User currUser={currUser} setCurrUser={setCurrUser} /> */}
         <Router>
           <Routes>
             <Route exact path="/" element={<Home />} />

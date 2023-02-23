@@ -7,12 +7,12 @@ const LogOut = ({ setCurrUser }) => {
       const response = await client
         .delete('/logout', {
           headers: {
-            'Content-Type': 'application/json',
-            authorization: localStorage.getItem('token')
+            'Content-Type': 'application/json'
           }
         })
         .then((res) => {
           const data = res.data;
+          console.log(data);
           if (!response.ok) throw data.error;
           localStorage.removeItem('token');
           setCurrUser(null);

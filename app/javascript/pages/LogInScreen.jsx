@@ -1,8 +1,39 @@
 import React, { useState } from 'react';
+import client from '../redux/axios';
 import SignUpScreen from './SignUpScreen';
 
-const LogInScreen = () => {
+const LogInScreen = ({ setCurrUser, setShow }) => {
   const [signIn, setSignIn] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const login = async (setCurrUser) => {
+    // Handle validations
+    await client
+      .post(
+        '/login',
+        { email, password },
+        {
+          headers: {
+            'content-type': 'application/json'
+          }
+        }
+      )
+      .then((response) => {
+        setSignIn(response.data);
+        if (!response.ok) throw data.error;
+        console.log(response.headers.get('Authorization'));
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
+  };
+
+  const handleSubmit = (e) => {
+    // Prevent the default submit and page reload
+    e.preventDefault();
+    setSignIn(true);
+  };
 
   return (
     <div className="flex relative flex-col md:text-left md:flex-row  max-w-7xl px-10 justify-evenly mx-auto items-center">
@@ -18,7 +49,7 @@ const LogInScreen = () => {
         {signIn ? (
           <SignUpScreen />
         ) : (
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="overflow-hidden drop-shadow-2xl sm:rounded-md">
               <div className="bg-white px-4 py-5 sm:p-6">
                 <div className="grid grid-cols-6 gap-6">
@@ -30,6 +61,8 @@ const LogInScreen = () => {
                       id="email-address"
                       autoComplete="email"
                       className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
 
@@ -41,6 +74,8 @@ const LogInScreen = () => {
                       id="password"
                       autoComplete="password"
                       className="mt-1 block w-full  border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
                 </div>
