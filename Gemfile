@@ -91,3 +91,6 @@ gem 'letter_opener'
 
 # Used ‘sidekiq’ as a background job to send emails
 gem 'sidekiq', '< 8'
+
+# 'dotenv-rails' is for storing secret key in ENV file
+gem 'dotenv-rails', groups: %i[development test]
