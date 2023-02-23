@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const SignUpScreen = ({ setCurrUser, setShow }) => {
   const formRef = useRef();
-
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

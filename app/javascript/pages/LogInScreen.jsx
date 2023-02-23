@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 const LogInScreen = ({ setCurrUser, setShow }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const formRef = useRef();
 
   const login = async (userInfo, setCurrUser) => {
     const url = 'http://localhost:3000/login';
