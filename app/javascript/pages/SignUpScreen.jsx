@@ -9,23 +9,40 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
   const [password, setPassword] = useState('');
 
   const { register, handleSubmit } = useForm();
-  const signup = async (userInfo, setCurrUser) => {
-    await client
-      .post('/signup', {
-        userName,
-        email,
-        password
-      })
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log('error', error);
-      });
-  };
 
+  const signup = async (userInfo, setCurrUser) => {
+    const url = 'http://localhost:3000/signup';
+    try {
+      const response = await fetch(url, {
+        method: 'post',
+        headers: {
+          'content-type': 'application/json',
+          accept: 'application/json'
+        },
+        body: JSON.stringify(userInfo)
+      });
+      const data = await response.json();
+      if (!response.ok) throw data.error;
+
+      localStorage.setItem('token', response.headers.get('Authorization'));
+      setCurrUser(data);
+    } catch (error) {
+      console.log('error', error);
+    }
+  };
   const onSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData(formRef.current);
+    const data = Object.fromEntries(formData);
+    const userInfo = {
+      user: { email: data.email, password: data.password }
+    };
+    signup(userInfo, setCurrUser);
+    e.target.reset();
+  };
+  const handleClick = (e) => {
+    e.preventDefault();
+    setShow(true);
   };
 
   return (
@@ -36,7 +53,8 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
             Sign Up
           </h3>
         </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
+
+        <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
           <div className="overflow-hidden drop-shadow-2xl sm:rounded-md">
             <div className="bg-white px-4 py-5 sm:p-6">
               <div className="grid grid-cols-6 gap-6">
@@ -94,6 +112,7 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
             </div>
             <div className="bg-gray-50 px-4 py-3 text-center md:text-left sm:px-6">
               <button
+                onClick={handleClick}
                 type="submit"
                 className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
               >

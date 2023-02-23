@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import client from '../redux/axios';
-import SignUpScreen from './SignUpScreen';
 
 const LogInScreen = ({ setCurrUser, setShow }) => {
   const [email, setEmail] = useState('');
