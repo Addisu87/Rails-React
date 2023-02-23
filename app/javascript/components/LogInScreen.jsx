@@ -1,16 +1,36 @@
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import client from '../redux/axios';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { clearMessage } from '../redux/slices/message';
 
 const LogInScreen = () => {
+  const formRef = useRef();
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const formRef = useRef();
+  const [loading, setLoading] = useState(false);
 
   const { register, handleSubmit } = useForm();
-  const onSubmit = (values) => {
-    console.log(JSON.stringify(values, null, 2));
-    return false;
+
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+
+  const onSubmit = () => {
+    setLoading(true);
+
+    dispatch(login({ email, password }))
+      .unwrap()
+      .then(() => {
+        navigate('/blogs');
+        window.locate.reload();
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -63,11 +83,14 @@ const LogInScreen = () => {
             </div>
             <div className="bg-gray-50 px-4 py-3 text-center md:text-left sm:px-6">
               <button
-                onClick={handleClick}
+                disabled={loading}
                 type="submit"
                 className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
               >
-                Sign In
+                {loading && (
+                  <span className="spinner-border spinner-border-sm"></span>
+                )}
+                <span>Sign In</span>
               </button>
             </div>
           </div>
