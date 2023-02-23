@@ -2,15 +2,14 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const SignUpScreen = ({ setCurrUser, setShow }) => {
-  const [currUser, setCurrUser] = useState(null);
-  const [show, setShow] = useState(true);
+  const formRef = useRef();
 
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const { register, handleSubmit } = useForm();
-  const signUp = async () => {
+  const signup = async (userInfo, setCurrUser) => {
     await client
       .post('/signup', {
         userName,
@@ -18,7 +17,7 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
         password
       })
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log('error', error);
@@ -27,7 +26,6 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setShow(true);
   };
 
   return (
