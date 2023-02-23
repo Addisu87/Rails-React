@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import client from '../redux/axios';
 
 const SignUpScreen = () => {
@@ -7,21 +8,13 @@ const SignUpScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const register = async (username, email, password) => {
-    await client
-      .post('/signup', {
-        username,
-        email,
-        password
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (values) => {
+    console.log(JSON.stringify(values, null, 2));
+    return false;
   };
 
+  
   return (
     <div className="flex relative flex-col md:text-left md:flex-row  max-w-7xl px-10 justify-evenly mx-auto items-center">
       <div className="mt-20 mb-12 md:col-span-2 md:mt-24 space-y-8">
@@ -31,7 +24,7 @@ const SignUpScreen = () => {
           </h3>
         </div>
 
-        <form ref={formRef}>
+        <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
           <div className="overflow-hidden drop-shadow-2xl sm:rounded-md">
             <div className="bg-white px-4 py-5 sm:p-6">
               <div className="grid grid-cols-6 gap-6">
@@ -52,6 +45,7 @@ const SignUpScreen = () => {
                   <input
                     type="text"
                     name="email-address"
+                    {...register('EmailAddress', { required: true })}
                     placeholder="Email Address"
                     id="email-address"
                     autoComplete="email"
@@ -65,6 +59,10 @@ const SignUpScreen = () => {
                   <input
                     type="password"
                     name="password"
+                    {...register('password', {
+                      required: true,
+                      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+                    })}
                     placeholder="password"
                     id="password"
                     autoComplete="password"

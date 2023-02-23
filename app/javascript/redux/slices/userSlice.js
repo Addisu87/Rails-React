@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import client from '../axios';
+import AuthService from '../../services/authServices';
 import { setMessage } from './message';
 
 //  Initial States
@@ -12,7 +12,7 @@ export const register = createAsyncThunk(
   'user/register',
   async ({ username, email, password }) => {
     try {
-      const response = await client.register(username, email, password);
+      const response = await AuthService.register(username, email, password);
       thunkAPI.dispatch(setMessage(response.data.message));
       return response.data;
     } catch (error) {
@@ -27,7 +27,7 @@ export const login = createAsyncThunk(
   'user/login',
   async ({ email, password }) => {
     try {
-      const data = await client.login(email, password);
+      const data = await AuthService.login(email, password);
       return { user: data };
     } catch (error) {
       console.log('error', error);
@@ -36,7 +36,7 @@ export const login = createAsyncThunk(
 );
 
 export const logout = createAsyncThunk('user/logout', async () => {
-  await client.logout();
+  await AuthService.logout();
 });
 
 // Slice Reducer
