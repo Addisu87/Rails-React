@@ -3,7 +3,8 @@ import LogInScreen from '../pages/LogInScreen';
 import LogOut from '../pages/LogOut';
 import SignUpScreen from '../pages/SignUpScreen';
 
-const User = ({ currUser, setCurrUser }) => {
+const User = () => {
+  const [currUser, setCurrUser] = useState(null);
   const [show, setShow] = useState(true);
 
   if (currUser)

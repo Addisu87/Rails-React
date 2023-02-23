@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { reactionAdded } from '../../redux/blogsSlice';
+import { reactionAdded } from '../../redux/slices/blogsSlice';
 
 const reactionEmoji = {
   thumbsUp: '👍',

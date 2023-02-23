@@ -11,13 +11,11 @@ import SignUpScreen from '../pages/SignUpScreen';
 import User from './User';
 
 const App = () => {
-  const [currUser, setCurrUser] = useState(null);
-
   return (
     <>
       <Sidebar />
       <main>
-        <User currUser={currUser} setCurrUser={setCurrUser} />
+        <User />
         <Router>
           <Routes>
             <Route exact path="/" element={<Home />} />
