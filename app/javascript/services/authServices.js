@@ -2,7 +2,7 @@ import client from '../redux/axios';
 
 const login = async (email, password) => {
   await client
-    .post('/signin', {
+    .post('/login', {
       email,
       password
     })
@@ -34,7 +34,7 @@ const register = async (username, email, password) => {
 
 const logout = async () => {
   localStorage.removeItem('user');
-  return await client.delete('/signout').then((response) => {
+  return await client.delete('/logout').then((response) => {
     return response.data;
   });
 };
