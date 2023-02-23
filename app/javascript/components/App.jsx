@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
 import About from '../pages/About';
@@ -8,12 +8,16 @@ import Blogs from '../pages/Blogs';
 import AddBlogForm from './Blogs/AddBlogForm';
 import LogInScreen from '../pages/LogInScreen';
 import SignUpScreen from '../pages/SignUpScreen';
+import User from './User';
 
 const App = () => {
+  const [currUser, setCurrUser] = useState(null);
+
   return (
     <>
       <Sidebar />
       <main>
+        <User currUser={currUser} setCurrUser={setCurrUser} />
         <Router>
           <Routes>
             <Route exact path="/" element={<Home />} />
