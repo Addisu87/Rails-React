@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import LogInScreen from '../pages/LogInScreen';
-import LogOut from '../pages/LogOut';
-import SignUpScreen from '../pages/SignUpScreen';
+import LogInScreen from './LogInScreen';
+import LogOut from './LogOut';
+import SignUpScreen from './SignUpScreen';
 
 const User = () => {
   const [currUser, setCurrUser] = useState(null);

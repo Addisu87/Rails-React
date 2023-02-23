@@ -6,8 +6,8 @@ import Projects from '../pages/Projects';
 import Sidebar from './Sidebar';
 import Blogs from '../pages/Blogs';
 import AddBlogForm from './Blogs/AddBlogForm';
-import LogInScreen from '../pages/LogInScreen';
-import SignUpScreen from '../pages/SignUpScreen';
+import LogInScreen from './LogInScreen';
+import SignUpScreen from './SignUpScreen';
 import User from './User';
 
 const App = () => {
