@@ -3,7 +3,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from '../components/App';
-import store from '../redux/ConfigureStore';
+import store from '../redux/store';
 import { fetchUsers } from '../redux/usersSlice';
 
 // Connects to data-controller="react"

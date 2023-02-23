@@ -1,47 +1,25 @@
 import React, { useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import client from '../redux/axios';
 
-const SignUpScreen = ({ setCurrUser, setShow }) => {
+const SignUpScreen = () => {
   const formRef = useRef();
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const { register, handleSubmit } = useForm();
-
-  const signup = async (userInfo, setCurrUser) => {
-    const url = 'http://localhost:3000/signup';
-    try {
-      const response = await fetch(url, {
-        method: 'post',
-        headers: {
-          'content-type': 'application/json',
-          accept: 'application/json'
-        },
-        body: JSON.stringify(userInfo)
+  const register = async (username, email, password) => {
+    await client
+      .post('/signup', {
+        username,
+        email,
+        password
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      const data = await response.json();
-      if (!response.ok) throw data.error;
-
-      localStorage.setItem('token', response.headers.get('Authorization'));
-      setCurrUser(data);
-    } catch (error) {
-      console.log('error', error);
-    }
-  };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(formRef.current);
-    const data = Object.fromEntries(formData);
-    const userInfo = {
-      user: { email: data.email, password: data.password }
-    };
-    signup(userInfo, setCurrUser);
-    e.target.reset();
-  };
-  const handleClick = (e) => {
-    e.preventDefault();
-    setShow(true);
   };
 
   return (
@@ -53,7 +31,7 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
           </h3>
         </div>
 
-        <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
+        <form ref={formRef}>
           <div className="overflow-hidden drop-shadow-2xl sm:rounded-md">
             <div className="bg-white px-4 py-5 sm:p-6">
               <div className="grid grid-cols-6 gap-6">
@@ -61,10 +39,6 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
                   <input
                     type="text"
                     name="user-name"
-                    {...register('userName', {
-                      required: true,
-                      maxLength: 20
-                    })}
                     placeholder="User Name"
                     id="user-name"
                     autoComplete="user-name"
@@ -78,10 +52,6 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
                   <input
                     type="text"
                     name="email-address"
-                    {...register('email', {
-                      required: true,
-                      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-                    })}
                     placeholder="Email Address"
                     id="email-address"
                     autoComplete="email"
@@ -95,10 +65,6 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
                   <input
                     type="password"
                     name="password"
-                    {...register('password', {
-                      required: true,
-                      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-                    })}
                     placeholder="password"
                     id="password"
                     autoComplete="password"

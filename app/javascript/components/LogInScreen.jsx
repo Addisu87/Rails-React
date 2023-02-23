@@ -1,47 +1,26 @@
 import React, { useRef, useState } from 'react';
+import client from '../redux/axios';
 
 const LogInScreen = ({ setCurrUser, setShow }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const formRef = useRef();
 
-  const login = async (userInfo, setCurrUser) => {
-    const url = 'http://localhost:3000/login';
-    try {
-      const response = await fetch(url, {
-        method: 'post',
-        headers: {
-          'content-type': 'application/json',
-          accept: 'application/json'
-        },
-        body: JSON.stringify(userInfo)
+  const login = async (email, password) => {
+    await client
+      .post('/signin', {
+        email,
+        password
+      })
+      .then((response) => {
+        if (response.data.email) {
+          localStorage.setItem('token', JSON.stringify(response.data));
+        }
+        return response.data;
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      const data = await response.json();
-      if (!response.ok) throw data.error;
-
-      console.log(response.headers.get('Authorization'));
-      localStorage.setItem('token', response.headers.get('Authorization'));
-      setCurrUser(data);
-    } catch (error) {
-      console.log('error', error);
-    }
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(formRef.current);
-    const data = Object.fromEntries(formData);
-    const userInfo = {
-      user: {
-        email: data.email,
-        password: data.password
-      }
-    };
-    login(userInfo, setCurrUser);
-    e.target.reset();
-  };
-  const handleClick = (e) => {
-    e.preventDefault();
-    setShow(false);
   };
 
   return (
