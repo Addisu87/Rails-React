@@ -1,11 +1,18 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ setCurrUser, setShow }) => {
   const { register, handleSubmit } = useForm();
+  const formRef = useRef();
+
   const onSubmit = (values) => {
     console.log(JSON.stringify(values, null, 2));
     return false;
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setShow(true);
   };
 
   return (
@@ -80,6 +87,7 @@ const SignUpScreen = () => {
             </div>
             <div className="bg-gray-50 px-4 py-3 text-center md:text-left sm:px-6">
               <button
+                onClick={handleClick}
                 type="submit"
                 className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
               >

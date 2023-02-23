@@ -1,19 +1,22 @@
 import React from 'react';
+import client from '../redux/axios';
 
 const LogOut = ({ setCurrUser }) => {
-  const logout = async (setCurrUser) => {
+  const logout = async () => {
     try {
-      const response = await axios(`${baseURL}/logout`, {
-        method: 'delete',
-        headers: {
-          'content-type': 'application/json',
-          authorization: localStorage.getItem('token')
-        }
-      });
-      const data = await response.json();
-      if (!response.ok) throw data.error;
-      localStorage.removeItem('token');
-      setCurrUser(null);
+      const response = await client
+        .delete('/logout', {
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: localStorage.getItem('token')
+          }
+        })
+        .then((res) => {
+          const data = res.data;
+          if (!response.ok) throw data.error;
+          localStorage.removeItem('token');
+          setCurrUser(null);
+        });
     } catch (error) {
       console.log('error', error);
     }
@@ -26,7 +29,7 @@ const LogOut = ({ setCurrUser }) => {
 
   return (
     <div>
-      <input type="button" value="Logout" onClick={handleClick} />
+      <input type="button" value="logout" onClick={handleClick} />
     </div>
   );
 };
