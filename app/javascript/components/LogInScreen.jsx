@@ -1,17 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { clearMessage } from '../redux/slices/message';
+import AuthService from '../services/authServices';
 
-const LogInScreen = () => {
+const LogInScreen = ({ setCurrUser, setShow }) => {
   const formRef = useRef();
-  const dispatch = useDispatch();
-  let navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const isLoggedIn = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const { register, handleSubmit } = useForm();
 
@@ -23,16 +24,22 @@ const LogInScreen = () => {
     e.preventDefault();
     setLoading(true);
 
-    dispatch(login({ email, password }))
+    AuthService.login({ email, password })
       .unwrap()
       .then(() => {
-        navigate('/blogs');
         window.location.reload();
+        setCurrUser({ email, password }), e.target.reset;
       })
+
       .catch((error) => {
         setLoading(false);
         console.log('error', error);
       });
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setShow(false);
   };
 
   return (
@@ -94,6 +101,15 @@ const LogInScreen = () => {
             </div>
           </div>
         </form>
+
+        <br />
+
+        <div>
+          Not registered yet,{' '}
+          <a href="#signup" onClick={handleClick}>
+            Signup
+          </a>{' '}
+        </div>
       </div>
     </div>
   );
