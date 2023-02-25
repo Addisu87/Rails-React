@@ -1,5 +1,20 @@
 import client from '../redux/axios';
 
+const register = async (username, email, password) => {
+  await client
+    .post('/signup', {
+      username,
+      email,
+      password
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const login = async (email, password) => {
   await client
     .post('/login', {
@@ -17,23 +32,8 @@ const login = async (email, password) => {
     });
 };
 
-const register = async (username, email, password) => {
-  await client
-    .post('/signup', {
-      username,
-      email,
-      password
-    })
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-};
-
 const logout = async () => {
-  localStorage.removeItem('user');
+  localStorage.removeItem('token');
   return await client.delete('/logout').then((response) => {
     return response.data;
   });

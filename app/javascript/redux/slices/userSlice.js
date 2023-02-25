@@ -6,7 +6,7 @@ import { setMessage } from './message';
 const initialState = {
   user: null
 };
-
+   
 //createAsyncThunk API generates thunks that automatically dispatch those "login/logout" actions.
 export const register = createAsyncThunk(
   'user/register',
