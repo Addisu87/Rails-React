@@ -9,7 +9,7 @@ const AddBlogForm = () => {
   const [addRequestStatus, setAddRequestStatus] = useState('idle');
 
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const users = useSelector((state) => state.user);
 
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onContentChanged = (e) => setContent(e.target.value);
@@ -34,7 +34,7 @@ const AddBlogForm = () => {
     }
   };
 
-  const usersOptions = user.map((user) => (
+  const usersOptions = users?.map((user) => (
     <option key={user.id} value={user.id}>
       {user.name}
     </option>

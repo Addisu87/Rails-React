@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import AuthService from '../services/authServices';
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ setCurrUser, setShow }) => {
   const formRef = useRef();
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -19,12 +20,21 @@ const SignUpScreen = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(register({ userName, email, password }))
+    AuthService.register({ userName, email, password })
       .unwrap()
-      .then(() => setSuccessful(true))
+      .then(() => {
+        setSuccessful(true),
+          setCurrUser({ userName, email, password }),
+          e.target.reset();
+      })
       .catch(() => {
         setSuccessful(false);
       });
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setShow(true);
   };
 
   return (
@@ -89,6 +99,7 @@ const SignUpScreen = () => {
               </div>
               <div className="bg-gray-50 px-4 py-3 text-center md:text-left sm:px-6">
                 <button
+                  onclick={handleClick}
                   type="submit"
                   className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
                 >

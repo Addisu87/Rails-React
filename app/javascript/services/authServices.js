@@ -8,7 +8,7 @@ const register = async (userName, email, password) => {
       password
     })
     .then((res) => {
-      console.log(res);
+      localStorage.setItem('token', res.headers.get('Authorization'));
     })
     .catch((err) => {
       console.log(err);
