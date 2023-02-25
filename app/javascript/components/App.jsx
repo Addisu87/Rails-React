@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Home from '../pages/Home';
 import About from '../pages/About';
 import Projects from '../pages/Projects';
@@ -11,24 +11,32 @@ import SignUpScreen from './SignUpScreen';
 import User from './User';
 
 const App = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    // 👇️ navigate programmatically
+    navigate('/blogs', { replace: true });
+  };
   return (
     <>
       <Sidebar />
       <main>
         <User />
-        <Router>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/blogs" element={<Blogs />}>
-              <Route path="/blogs/:blogId" element={<AddBlogForm />} />
-            </Route>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/blogs" element={<Blogs />}>
+            <Route path="/blogs/:blogId" element={<AddBlogForm />} />
+          </Route>
 
-            <Route path="/login" element={<LogInScreen />} />
-            <Route path="/signup" element={<SignUpScreen />} />
-          </Routes>
-        </Router>
+          <Route
+            path="/login"
+            onClick={handleClick}
+            element={<LogInScreen />}
+          />
+          <Route path="/signup" element={<SignUpScreen />} />
+        </Routes>
       </main>
     </>
   );

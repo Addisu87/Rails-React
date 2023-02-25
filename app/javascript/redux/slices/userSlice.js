@@ -6,7 +6,7 @@ import { setMessage } from './message';
 const initialState = {
   user: null
 };
-   
+
 //createAsyncThunk API generates thunks that automatically dispatch those "login/logout" actions.
 export const register = createAsyncThunk(
   'user/register',
@@ -41,7 +41,7 @@ export const logout = createAsyncThunk('user/logout', async () => {
 
 // Slice Reducer
 const userSlice = createSlice({
-  name: 'users',
+  name: 'user',
   initialState,
   reducers: {},
   extraReducers(builder) {
@@ -57,6 +57,6 @@ const userSlice = createSlice({
 
 export const { reducer } = userSlice;
 
-export const selectUser = (state) => state.users.user;
+export const selectUser = (state) => state.user.user;
 
 export default userSlice.reducer;

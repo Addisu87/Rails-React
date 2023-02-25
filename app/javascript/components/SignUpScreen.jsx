@@ -1,6 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import client from '../redux/axios';
 
 const SignUpScreen = () => {
   const formRef = useRef();
@@ -14,7 +13,6 @@ const SignUpScreen = () => {
     return false;
   };
 
-  
   return (
     <div className="flex relative flex-col md:text-left md:flex-row  max-w-7xl px-10 justify-evenly mx-auto items-center">
       <div className="mt-20 mb-12 md:col-span-2 md:mt-24 space-y-8">

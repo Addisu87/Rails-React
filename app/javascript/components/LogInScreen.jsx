@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clearMessage } from '../redux/slices/message';
+import AuthService from '../services/authServices';
 
 const LogInScreen = () => {
   const formRef = useRef();
@@ -19,17 +20,19 @@ const LogInScreen = () => {
     dispatch(clearMessage());
   }, [dispatch]);
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     setLoading(true);
 
-    dispatch(login({ email, password }))
+    AuthService.login({ email, password })
       .unwrap()
       .then(() => {
         navigate('/blogs');
-        window.locate.reload();
+        window.location.reload();
       })
-      .catch(() => {
+      .catch((error) => {
         setLoading(false);
+        console.log('error', error);
       });
   };
 
@@ -37,12 +40,9 @@ const LogInScreen = () => {
     <div className="flex relative flex-col md:text-left md:flex-row  max-w-7xl px-10 justify-evenly mx-auto items-center">
       <div className="mt-20 mb-12 md:col-span-2 md:mt-24 space-y-8">
         <div className="px-4 sm:px-0">
-          <button
-            onClick={handleClick}
-            className="text-xl text-center font-medium leading-6 text-gray-900"
-          >
+          <h3 className="text-xl text-center font-medium leading-6 text-gray-900">
             Sign In
-          </button>
+          </h3>
         </div>
 
         <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>

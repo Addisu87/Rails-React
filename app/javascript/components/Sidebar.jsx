@@ -4,7 +4,6 @@ import {
   FaBars,
   FaBell,
   FaDesktop,
-  FaNewspaper,
   FaRegSun,
   FaSearch,
   FaSignInAlt,
