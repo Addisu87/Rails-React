@@ -13,9 +13,13 @@ const SignUpScreen = () => {
   const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+
   const onSubmit = (e) => {
     e.preventDefault();
-    dispatch(register({ username, email, password }))
+    dispatch(register({ userName, email, password }))
       .unwrap()
       .then(() => setSuccessful(true))
       .catch(() => {
@@ -33,65 +37,77 @@ const SignUpScreen = () => {
         </div>
 
         <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
-          <div className="overflow-hidden drop-shadow-2xl sm:rounded-md">
-            <div className="bg-white px-4 py-5 sm:p-6">
-              <div className="grid grid-cols-6 gap-6">
-                <div className="col-span-6">
-                  <input
-                    type="text"
-                    name="user-name"
-                    {...register('User Name', { required: true })}
-                    placeholder="User Name"
-                    id="user-name"
-                    autoComplete="user-name"
-                    className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    value={userName}
-                    onChange={(e) => setUserName(e.target.value)}
-                  />
-                </div>
+          {!successful && (
+            <div className="overflow-hidden drop-shadow-2xl sm:rounded-md">
+              <div className="bg-white px-4 py-5 sm:p-6">
+                <div className="grid grid-cols-6 gap-6">
+                  <div className="col-span-6">
+                    <input
+                      type="text"
+                      name="user-name"
+                      {...register('User Name', { required: true })}
+                      placeholder="User Name"
+                      id="user-name"
+                      autoComplete="user-name"
+                      className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      value={userName}
+                      onChange={(e) => setUserName(e.target.value)}
+                    />
+                  </div>
 
-                <div className="col-span-6">
-                  <input
-                    type="text"
-                    name="email-address"
-                    {...register('EmailAddress', { required: true })}
-                    placeholder="Email Address"
-                    id="email-address"
-                    autoComplete="email"
-                    className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
+                  <div className="col-span-6">
+                    <input
+                      type="text"
+                      name="email-address"
+                      {...register('EmailAddress', { required: true })}
+                      placeholder="Email Address"
+                      id="email-address"
+                      autoComplete="email"
+                      className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
 
-                <div className="col-span-6">
-                  <input
-                    type="password"
-                    name="password"
-                    {...register('password', {
-                      required: true,
-                      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-                    })}
-                    placeholder="password"
-                    id="password"
-                    autoComplete="password"
-                    className="mt-1 block w-full  border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
+                  <div className="col-span-6">
+                    <input
+                      type="password"
+                      name="password"
+                      {...register('password', {
+                        required: true,
+                        pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+                      })}
+                      placeholder="password"
+                      id="password"
+                      autoComplete="password"
+                      className="mt-1 block w-full  border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
                 </div>
               </div>
+              <div className="bg-gray-50 px-4 py-3 text-center md:text-left sm:px-6">
+                <button
+                  type="submit"
+                  className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
+                >
+                  Sign Up
+                </button>
+              </div>
             </div>
-            <div className="bg-gray-50 px-4 py-3 text-center md:text-left sm:px-6">
-              <button
-                type="submit"
-                className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
-              >
-                Sign Up
-              </button>
-            </div>
-          </div>
+          )}
         </form>
+        {message && (
+          <div
+            className={
+              successful ? 'alert alert-success' : 'alert alert-danger'
+            }
+            role="alert"
+          >
+            {message}
+          </div>
+        )}
       </div>
     </div>
   );

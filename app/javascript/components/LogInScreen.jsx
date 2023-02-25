@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clearMessage } from '../redux/slices/message';
-import AuthService from '../services/authServices';
 
 const LogInScreen = () => {
   const formRef = useRef();
@@ -24,7 +23,7 @@ const LogInScreen = () => {
     e.preventDefault();
     setLoading(true);
 
-    AuthService.login({ email, password })
+    dispatch(login({ email, password }))
       .unwrap()
       .then(() => {
         navigate('/blogs');

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Blogs from '../pages/Blogs';
 import LogInScreen from './LogInScreen';
 import LogOut from './LogOut';
 import SignUpScreen from './SignUpScreen';
@@ -10,7 +11,9 @@ const User = () => {
   if (currUser)
     return (
       <div>
-        Hello {currUser.email} <LogOut setCurrUser={setCurrUser} />
+        Hello {currUser.email}
+        <Blogs setCurrUser={setCurrUser} />
+        <LogOut setCurrUser={setCurrUser} />
       </div>
     );
 

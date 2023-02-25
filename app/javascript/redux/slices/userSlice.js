@@ -10,9 +10,9 @@ const initialState = {
 //createAsyncThunk API generates thunks that automatically dispatch those "login/logout" actions.
 export const register = createAsyncThunk(
   'user/register',
-  async ({ username, email, password }, thunkAPI) => {
+  async ({ userName, email, password }, thunkAPI) => {
     try {
-      const response = await AuthService.register(username, email, password);
+      const response = await AuthService.register(userName, email, password);
       thunkAPI.dispatch(setMessage(response.data.message));
       return response.data;
     } catch (error) {

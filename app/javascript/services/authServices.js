@@ -1,9 +1,9 @@
 import client from '../redux/axios';
 
-const register = async (username, email, password) => {
+const register = async (userName, email, password) => {
   await client
     .post('/signup', {
-      username,
+      userName,
       email,
       password
     })

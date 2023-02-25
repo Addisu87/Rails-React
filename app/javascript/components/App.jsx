@@ -17,6 +17,7 @@ const App = () => {
     // 👇️ navigate programmatically
     navigate('/blogs', { replace: true });
   };
+
   return (
     <>
       <Sidebar />
