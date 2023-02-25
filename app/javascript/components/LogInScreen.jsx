@@ -90,7 +90,7 @@ const LogInScreen = () => {
                 {loading && (
                   <span className="spinner-border spinner-border-sm"></span>
                 )}
-                <span>Sign In</span>
+                <span>Login</span>
               </button>
             </div>
           </div>

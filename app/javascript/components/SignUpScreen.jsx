@@ -1,16 +1,26 @@
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 const SignUpScreen = () => {
   const formRef = useRef();
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [successful, setSuccessful] = useState(false);
 
   const { register, handleSubmit } = useForm();
-  const onSubmit = (values) => {
-    console.log(JSON.stringify(values, null, 2));
-    return false;
+  const { message } = useSelector((state) => state.message);
+  const dispatch = useDispatch();
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch(register({ username, email, password }))
+      .unwrap()
+      .then(() => setSuccessful(true))
+      .catch(() => {
+        setSuccessful(false);
+      });
   };
 
   return (
@@ -30,6 +40,7 @@ const SignUpScreen = () => {
                   <input
                     type="text"
                     name="user-name"
+                    {...register('User Name', { required: true })}
                     placeholder="User Name"
                     id="user-name"
                     autoComplete="user-name"
@@ -73,7 +84,6 @@ const SignUpScreen = () => {
             </div>
             <div className="bg-gray-50 px-4 py-3 text-center md:text-left sm:px-6">
               <button
-                onClick={handleClick}
                 type="submit"
                 className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
               >
