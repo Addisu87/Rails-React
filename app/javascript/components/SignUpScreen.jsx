@@ -15,13 +15,9 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
     dispatch(clearMessage());
   }, [dispatch]);
 
-  const signup = async (userName, email, password, setCurrUser) => {
+  const signup = async (userInfo, setCurrUser) => {
     await client
-      .post('/signup', {
-        userName,
-        email,
-        password
-      })
+      .post('/signup', { userInfo })
       .then((res) => {
         localStorage.setItem('token', res.headers.get('Authorization'));
         setCurrUser(res.data);
@@ -33,7 +29,12 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    signup(userName, email, password, setCurrUser);
+    const formData = new FormData(formRef.current);
+    const data = Object.fromEntries(formData);
+    const userInfo = {
+      user: { email: data.email, password: data.password }
+    };
+    signup(userInfo, setCurrUser);
     e.target.reset();
   };
 
@@ -103,7 +104,6 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
             </div>
             <div className="bg-gray-50 px-4 py-3 text-center md:text-left sm:px-6">
               <button
-                onclick={handleClick}
                 type="submit"
                 className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
               >

@@ -1,15 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { clearMessage } from '../redux/slices/message';
-import AuthService from '../services/authServices';
 
 const LogInScreen = ({ setCurrUser, setShow }) => {
   const formRef = useRef();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -19,12 +17,9 @@ const LogInScreen = ({ setCurrUser, setShow }) => {
     dispatch(clearMessage());
   }, [dispatch]);
 
-  const login = async (email, password, setCurrUser) => {
+  const login = async (userInfo, setCurrUser) => {
     await client
-      .post('/login', {
-        email,
-        password
-      })
+      .post('/login', { userInfo })
       .then((response) => {
         localStorage.setItem('token', response.headers.get('Authorization'));
         setCurrUser(response.data);
@@ -37,9 +32,17 @@ const LogInScreen = ({ setCurrUser, setShow }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
 
-    login(setCurrUser);
+    const formData = new FormData(formRef.current);
+    const data = Object.fromEntries(formData);
+    const userInfo = {
+      user: {
+        email: data.email,
+        password: data.password
+      }
+    };
+
+    login(userInfo, setCurrUser);
     e.target.reset;
   };
 
@@ -95,13 +98,9 @@ const LogInScreen = ({ setCurrUser, setShow }) => {
             </div>
             <div className="bg-gray-50 px-4 py-3 text-center md:text-left sm:px-6">
               <button
-                disabled={loading}
                 type="submit"
                 className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
               >
-                {loading && (
-                  <span className="spinner-border spinner-border-sm"></span>
-                )}
                 <span>Login</span>
               </button>
             </div>
