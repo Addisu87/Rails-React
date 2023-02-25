@@ -1,35 +1,40 @@
 import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import AuthService from '../services/authServices';
 
 const SignUpScreen = ({ setCurrUser, setShow }) => {
   const formRef = useRef();
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [successful, setSuccessful] = useState(false);
 
   const { register, handleSubmit } = useForm();
-  const { message } = useSelector((state) => state.message);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(clearMessage());
   }, [dispatch]);
 
+  const signup = async (userName, email, password, setCurrUser) => {
+    await client
+      .post('/signup', {
+        userName,
+        email,
+        password
+      })
+      .then((res) => {
+        localStorage.setItem('token', res.headers.get('Authorization'));
+        setCurrUser(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
-    AuthService.register({ userName, email, password })
-      .unwrap()
-      .then(() => {
-        setSuccessful(true),
-          setCurrUser({ userName, email, password }),
-          e.target.reset();
-      })
-      .catch(() => {
-        setSuccessful(false);
-      });
+    signup(userName, email, password, setCurrUser);
+    e.target.reset();
   };
 
   const handleClick = (e) => {
@@ -47,78 +52,75 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
         </div>
 
         <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
-          {!successful && (
-            <div className="overflow-hidden drop-shadow-2xl sm:rounded-md">
-              <div className="bg-white px-4 py-5 sm:p-6">
-                <div className="grid grid-cols-6 gap-6">
-                  <div className="col-span-6">
-                    <input
-                      type="text"
-                      name="user-name"
-                      {...register('User Name', { required: true })}
-                      placeholder="User Name"
-                      id="user-name"
-                      autoComplete="user-name"
-                      className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      value={userName}
-                      onChange={(e) => setUserName(e.target.value)}
-                    />
-                  </div>
+          <div className="overflow-hidden drop-shadow-2xl sm:rounded-md">
+            <div className="bg-white px-4 py-5 sm:p-6">
+              <div className="grid grid-cols-6 gap-6">
+                <div className="col-span-6">
+                  <input
+                    type="text"
+                    name="user-name"
+                    {...register('User Name', { required: true })}
+                    placeholder="User Name"
+                    id="user-name"
+                    autoComplete="user-name"
+                    className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                  />
+                </div>
 
-                  <div className="col-span-6">
-                    <input
-                      type="text"
-                      name="email-address"
-                      {...register('EmailAddress', { required: true })}
-                      placeholder="Email Address"
-                      id="email-address"
-                      autoComplete="email"
-                      className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                    />
-                  </div>
+                <div className="col-span-6">
+                  <input
+                    type="text"
+                    name="email-address"
+                    {...register('EmailAddress', { required: true })}
+                    placeholder="Email Address"
+                    id="email-address"
+                    autoComplete="email"
+                    className="mt-1 block w-full border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
 
-                  <div className="col-span-6">
-                    <input
-                      type="password"
-                      name="password"
-                      {...register('password', {
-                        required: true,
-                        pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
-                      })}
-                      placeholder="password"
-                      id="password"
-                      autoComplete="password"
-                      className="mt-1 block w-full  border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </div>
+                <div className="col-span-6">
+                  <input
+                    type="password"
+                    name="password"
+                    {...register('password', {
+                      required: true,
+                      pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+                    })}
+                    placeholder="password"
+                    id="password"
+                    autoComplete="password"
+                    className="mt-1 block w-full  border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
                 </div>
               </div>
-              <div className="bg-gray-50 px-4 py-3 text-center md:text-left sm:px-6">
-                <button
-                  onclick={handleClick}
-                  type="submit"
-                  className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
-                >
-                  Sign Up
-                </button>
-              </div>
             </div>
-          )}
-        </form>
-        {message && (
-          <div
-            className={
-              successful ? 'alert alert-success' : 'alert alert-danger'
-            }
-            role="alert"
-          >
-            {message}
+            <div className="bg-gray-50 px-4 py-3 text-center md:text-left sm:px-6">
+              <button
+                onclick={handleClick}
+                type="submit"
+                className="inline-flex justify-center rounded-2xl border border-transparent bg-zinc-900 px-16 py-3 md:py-2 md:px-8 text-base font-medium text-white shadow-sm hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
+              >
+                Sign Up
+              </button>
+            </div>
           </div>
-        )}
+        </form>
+
+        <br />
+        <div>
+          Already registered,
+          <a href="#login" onClick={handleClick}>
+            Login
+          </a>
+          here.
+        </div>
       </div>
     </div>
   );

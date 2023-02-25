@@ -11,7 +11,6 @@ const LogInScreen = ({ setCurrUser, setShow }) => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const isLoggedIn = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const { register, handleSubmit } = useForm();
@@ -20,21 +19,28 @@ const LogInScreen = ({ setCurrUser, setShow }) => {
     dispatch(clearMessage());
   }, [dispatch]);
 
+  const login = async (email, password, setCurrUser) => {
+    await client
+      .post('/login', {
+        email,
+        password
+      })
+      .then((response) => {
+        localStorage.setItem('token', response.headers.get('Authorization'));
+        setCurrUser(response.data);
+        console.log(response.headers.get('Authorization'));
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
 
-    AuthService.login({ email, password })
-      .unwrap()
-      .then(() => {
-        window.location.reload();
-        setCurrUser({ email, password }), e.target.reset;
-      })
-
-      .catch((error) => {
-        setLoading(false);
-        console.log('error', error);
-      });
+    login(setCurrUser);
+    e.target.reset;
   };
 
   const handleClick = (e) => {
@@ -105,10 +111,10 @@ const LogInScreen = ({ setCurrUser, setShow }) => {
         <br />
 
         <div>
-          Not registered yet,{' '}
+          Not registered yet,
           <a href="#signup" onClick={handleClick}>
             Signup
-          </a>{' '}
+          </a>
         </div>
       </div>
     </div>
