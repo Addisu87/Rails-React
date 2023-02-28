@@ -34,31 +34,12 @@ const Navbar = () => {
   return (
     <div className="mx-auto max-w-7xl py-2 px-4 lg:px-8 lg:py-4">
       <nav className="flex h-16 items-center justify-between">
-        <div className="flex items-center">
-          <div className="flex-shrink-0">
-            <img
-              className="h-8 w-8"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-              alt="Your Company"
-            />
-          </div>
-
-          <ul className={`${openNav ? 'flex flex-col' : 'hidden'}`}>
-            {navigation.map((item, index) => (
-              <li
-                key={index}
-                className="ml-10 flex items-baseline"
-                onClick={() => setOpenNav(!openNav)}
-              >
-                <NavLink
-                  to={item.url}
-                  className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
-                >
-                  {item.name}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
+        <div className="flex-shrink-0">
+          <img
+            className="h-8 w-8"
+            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+            alt="Your Company"
+          />
         </div>
 
         <div className="-mr-2 flex md:hidden">
@@ -75,6 +56,23 @@ const Navbar = () => {
             )}
           </button>
         </div>
+
+        <ul className={`${openNav ? 'flex flex-col' : 'hidden md:flex'}`}>
+          {navigation.map((item, index) => (
+            <li
+              key={index}
+              className="ml-10 flex items-baseline"
+              onClick={() => setOpenNav(!openNav)}
+            >
+              <NavLink
+                to={item.url}
+                className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
+              >
+                {item.name}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
       </nav>
     </div>
   );
