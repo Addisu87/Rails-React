@@ -7,9 +7,9 @@ import Sidebar from './Sidebar';
 import Blogs from '../pages/Blogs';
 import AddBlogForm from './Blogs/AddBlogForm';
 import LogInScreen from './LogInScreen';
-import SignUpScreen from './SignUpScreen';
 import User from './User';
 import Navbar from './Navbar';
+import SignUpScreen from './SignUpScreen';
 
 const App = () => {
   return (

@@ -10,6 +10,7 @@ import {
   FaSignOutAlt
 } from 'react-icons/fa';
 import { MdClose, MdPerson } from 'react-icons/md';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -22,20 +23,32 @@ const Navbar = () => {
   }, []);
 
   const navigation = [
-    { title: 'Home', icon: <FaDesktop />, url: '/' },
-    { title: 'About', icon: <MdPerson />, url: '/about' },
-    { title: 'Projects', icon: <FaRegSun />, url: '/projects' },
-    { title: 'Blogs', icon: <FaBell />, url: '/blogs' },
-    { title: 'SignIn', icon: <FaSignInAlt />, url: '/login' },
-    { title: 'LogOut', icon: <FaSignOutAlt />, url: '/signup' }
+    { name: 'Home', url: '/' },
+    { name: 'About', url: '/about' },
+    { name: 'Projects', url: '/projects' },
+    { name: 'Blogs', url: '/blogs' },
+    { name: 'SignIn', url: '/login' },
+    { name: 'SignUp', url: '/signup' }
   ];
 
   return (
-    <nav className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4">
-      <div className="bg-gray-50 container flex h-16 items-center justify-between">
+    <div className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4">
+      <nav className="bg-gray-50 container flex h-16 items-center justify-between">
+        <div className="flex-shrink-0">
+          <img
+            className="h-8 w-8"
+            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+            alt="Your Company"
+          />
+        </div>
+
         <div className="-mr-2 md:hidden">
-          <button className="inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-            <span className="sr-only">Addisu</span>
+          <button
+            type="button"
+            className="-m-2.5 rounded-md p-2.5 text-gray-700"
+            onClick={() => setOpenNav(!openNav)}
+          >
+            <span className="sr-only">Open main menu</span>
             {openNav ? (
               <MdClose className="block h-6 w-6" aria-hidden="true" />
             ) : (
@@ -44,25 +57,24 @@ const Navbar = () => {
           </button>
         </div>
 
-        <ul className="hidden md:flex">
-          {navigation.map(({ icon, title, url }, index) => (
+        <ul className={`${openNav ? 'flex flex-col' : 'hidden'}`}>
+          {navigation.map((item, index) => (
             <li
               key={index}
-              className="ml-10 flex items-baseline space-x-4"
+              className="ml-10 flex items-baseline"
               onClick={() => setOpenNav(!openNav)}
             >
-              <span>{icon}</span>
-              <a
-                href={url}
-                className="text-sm font-semibold leading-6 text-gray-900"
+              <NavLink
+                to={item.url}
+                className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
               >
-                <span>{title}</span>
-              </a>
+                {item.name}
+              </NavLink>
             </li>
           ))}
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 };
 
