@@ -9,11 +9,13 @@ import AddBlogForm from './Blogs/AddBlogForm';
 import LogInScreen from './LogInScreen';
 import SignUpScreen from './SignUpScreen';
 import User from './User';
+import Navbar from './Navbar';
 
 const App = () => {
   return (
     <>
-      <Sidebar />
+      {/* <Sidebar /> */}
+      <Navbar />
       <main>
         <User />
         <Routes>

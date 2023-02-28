@@ -35,14 +35,14 @@ const Sidebar = () => {
           <p className="text-2xl leading-6 ">SideBar</p>
         </button>
 
-        <div className="relative flex justify-start w-72 text-gray-800 rounded items-center border border-gray-300 focus:outline-none focus:border-gray-400">
+        {/* <div className="relative flex justify-start w-72 text-gray-800 rounded items-center border border-gray-300 focus:outline-none focus:border-gray-400">
           <input
             type="text"
             placeholder="Search"
             className="placeholder-gray-800 text-base placeholder-text-base leading-4 py-3 w-72 pl-12 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 rounded "
           />
           <FaSearch className="absolute left-4 w-4 h-4" />
-        </div>
+        </div> */}
       </nav>
       {/* Navigation end */}
       <div className=" bg-white xl:hidden flex text-gray-800  hover:text-black focus:outline-none focus:text-black justify-between w-full p-6 items-center sm:w-72">
