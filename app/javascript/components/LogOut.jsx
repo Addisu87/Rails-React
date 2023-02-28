@@ -1,11 +1,11 @@
 import React from 'react';
 import client from '../redux/axios';
 
-const LogOut = (setCurrUser) => {
-  const logout = async () => {
+const LogOut = ({ setCurrUser }) => {
+  const logout = async (setCurrUser) => {
     localStorage.removeItem('token');
     setCurrUser(null);
-    return await client
+    await client
       .delete('/logout')
       .then((response) => {
         return response.data;
