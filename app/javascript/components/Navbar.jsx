@@ -32,20 +32,39 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4">
-      <nav className="bg-gray-50 container flex h-16 items-center justify-between">
-        <div className="flex-shrink-0">
-          <img
-            className="h-8 w-8"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-            alt="Your Company"
-          />
+    <div className="mx-auto max-w-7xl py-2 px-4 lg:px-8 lg:py-4">
+      <nav className="flex h-16 items-center justify-between">
+        <div className="flex items-center">
+          <div className="flex-shrink-0">
+            <img
+              className="h-8 w-8"
+              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+              alt="Your Company"
+            />
+          </div>
+
+          <ul className={`${openNav ? 'flex flex-col' : 'hidden'}`}>
+            {navigation.map((item, index) => (
+              <li
+                key={index}
+                className="ml-10 flex items-baseline"
+                onClick={() => setOpenNav(!openNav)}
+              >
+                <NavLink
+                  to={item.url}
+                  className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
+                >
+                  {item.name}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <div className="-mr-2 md:hidden">
+        <div className="-mr-2 flex md:hidden">
           <button
             type="button"
-            className="-m-2.5 rounded-md p-2.5 text-gray-700"
+            className="inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
             onClick={() => setOpenNav(!openNav)}
           >
             <span className="sr-only">Open main menu</span>
@@ -56,23 +75,6 @@ const Navbar = () => {
             )}
           </button>
         </div>
-
-        <ul className={`${openNav ? 'flex flex-col' : 'hidden'}`}>
-          {navigation.map((item, index) => (
-            <li
-              key={index}
-              className="ml-10 flex items-baseline"
-              onClick={() => setOpenNav(!openNav)}
-            >
-              <NavLink
-                to={item.url}
-                className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
-              >
-                {item.name}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
       </nav>
     </div>
   );
