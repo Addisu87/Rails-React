@@ -3,13 +3,13 @@ import { Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
 import About from '../pages/About';
 import Projects from '../pages/Projects';
-import Sidebar from './Sidebar';
+// import Sidebar from './Sidebar';
 import Blogs from '../pages/Blogs';
 import AddBlogForm from './Blogs/AddBlogForm';
-import LogInScreen from './LogInScreen';
 import User from './User';
-import Navbar from './Navbar';
+import LogInScreen from './LogInScreen';
 import SignUpScreen from './SignUpScreen';
+import Navbar from './Navbar';
 
 const App = () => {
   return (

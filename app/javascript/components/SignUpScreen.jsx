@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { clearMessage } from '../redux/slices/message';
 
 const SignUpScreen = ({ setCurrUser, setShow }) => {
   const formRef = useRef();
