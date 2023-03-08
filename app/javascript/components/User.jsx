@@ -4,15 +4,15 @@ import LogInScreen from './LogInScreen';
 import LogOut from './LogOut';
 import SignUpScreen from './SignUpScreen';
 
-const User = () => {
-  const [currUser, setCurrUser] = useState(null);
+const User = ({ currUser, setCurrUser }) => {
+  // const [currUser, setCurrUser] = useState(null);
   const [show, setShow] = useState(true);
 
   if (currUser)
     return (
       <div>
         Hello {currUser.email}
-        <Blogs setCurrUser={setCurrUser} />
+        <Blogs currUser={currUser} />
         <LogOut setCurrUser={setCurrUser} />
       </div>
     );

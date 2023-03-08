@@ -3,16 +3,17 @@ import client from '../redux/axios';
 
 const LogOut = ({ setCurrUser }) => {
   const logout = async (setCurrUser) => {
-    localStorage.removeItem('token');
-    setCurrUser(null);
     await client
       .delete('/logout')
       .then((response) => {
+        localStorage.getItem('token');
         return response.data;
       })
       .catch((error) => {
         console.log('error', error);
       });
+    localStorage.removeItem('token');
+    setCurrUser(null);
   };
 
   const handleClick = (e) => {

@@ -120,7 +120,6 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
           <a href="#login" onClick={handleClick}>
             Login
           </a>
-          here.
         </div>
       </div>
     </div>

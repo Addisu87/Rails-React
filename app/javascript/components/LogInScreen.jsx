@@ -43,7 +43,7 @@ const LogInScreen = ({ setCurrUser, setShow }) => {
     };
 
     login(userInfo, setCurrUser);
-    e.target.reset;
+    e.target.reset();
   };
 
   const handleClick = (e) => {
