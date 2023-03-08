@@ -20,10 +20,12 @@ const LogInScreen = ({ setCurrUser, setShow }) => {
   const login = async (userInfo, setCurrUser) => {
     await client
       .post('/login', { userInfo })
-      .then((response) => {
-        localStorage.setItem('token', response.headers.get('Authorization'));
-        setCurrUser(response.data);
-        console.log(response.headers.get('Authorization'));
+      .then((res) => {
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('user_id', res.data.id);
+        setCurrUser(res.data);
+        // localStorage.setItem('token', res.headers.get('Authorization'));
+        // console.log(res.headers.get('Authorization'));
       })
       .catch((error) => {
         console.log('error', error);

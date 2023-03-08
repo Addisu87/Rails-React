@@ -1,19 +1,24 @@
 import React from 'react';
 import client from '../redux/axios';
+// How to create a logout using axios?
 
 const LogOut = ({ setCurrUser }) => {
   const logout = async (setCurrUser) => {
-    await client
-      .delete('/logout')
-      .then((response) => {
-        localStorage.getItem('token');
-        return response.data;
-      })
-      .catch((error) => {
-        console.log('error', error);
+    try {
+      await client.post('/logout', {
+        headers: {
+          Authorization:
+            'Bearer ' + JSON.parse(localStorage.getItem('currentUser')).token
+        }
       });
-    localStorage.removeItem('token');
-    setCurrUser(null);
+      localStorage.clear();
+      setCurrUser.commit('setUser', {
+        token: null,
+        userId: null
+      });
+    } catch (error) {
+      console.log('error', error);
+    }
   };
 
   const handleClick = (e) => {

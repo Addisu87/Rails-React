@@ -20,8 +20,9 @@ const SignUpScreen = ({ setCurrUser, setShow }) => {
     await client
       .post('/signup', { userInfo })
       .then((res) => {
-        localStorage.setItem('token', res.headers.get('Authorization'));
+        localStorage.setItem('token', res.data.token);
         setCurrUser(res.data);
+        // localStorage.setItem('token', res.headers.get('Authorization'));
       })
       .catch((err) => {
         console.log(err);
