@@ -47,10 +47,11 @@ const BlogsList = () => {
     <section className="container mx-auto py-10 h-64 md:w-4/5 w-11/12 px-6">
       <h2>Blogs</h2>
       <div>
-        {blogs.content?.map((element, index) => {
+        {content?.map(({ title, content }, index) => {
           return (
             <div key={index}>
-              <span>{element}</span>
+              <span>{title}</span>
+              <span>{content}</span>
             </div>
           );
         })}

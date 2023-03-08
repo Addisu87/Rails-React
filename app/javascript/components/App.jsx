@@ -9,6 +9,7 @@ import User from './User';
 import LogInScreen from './LogInScreen';
 import SignUpScreen from './SignUpScreen';
 import Navbar from './Navbar';
+import NotPageFound from './NotPageFound';
 
 const App = () => {
   const [currUser, setCurrUser] = useState(null);
@@ -31,7 +32,7 @@ const App = () => {
           </Route>
           <Route path="/login" element={<LogInScreen />} />
           <Route path="/signup" element={<SignUpScreen />} />
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<NotPageFound />} />
         </Routes>
       </main>
     </>
